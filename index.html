@@ -90,7 +90,7 @@ footer{max-width:960px;margin:0 auto;padding:22px 16px;border-top:1px solid var(
 <a class="btn p" href="mailto:shobhitchaudhary038@gmail.com?subject=Inquiry%20regarding%20SRE%20Role">Email me</a>
 <a class="btn" href="https://www.linkedin.com/in/sushobhitkumar-sre" target="_blank" rel="noopener noreferrer">LinkedIn</a>
 <a class="btn" href="tel:+918750754754">+91-8750754754</a>
-<a class="btn" href="Sushobhit_Kumar_CV_July_26.pdf" download>Download CV</a>
+<a class="btn" href="Sushobhit_Kumar_CV.pdf" download>Download CV</a>
 </div>
 
 <div class="term" role="region" aria-label="Interactive terminal">
@@ -178,7 +178,8 @@ footer{max-width:960px;margin:0 auto;padding:22px 16px;border-top:1px solid var(
 <h2>Contact</h2>
 <div class="card"><p style="color:var(--sub)">Open to SRE, production support and infrastructure roles. The fastest way to reach me is email.</p>
 <div class="cta"><a class="btn p" href="mailto:shobhitchaudhary038@gmail.com?subject=Inquiry%20regarding%20SRE%20Role">shobhitchaudhary038@gmail.com</a>
-<a class="btn" href="https://www.linkedin.com/in/sushobhit-kumar-sre" target="_blank" rel="noopener noreferrer">LinkedIn</a></div></div>
+<a class="btn" href="https://www.linkedin.com/in/sushobhitkumar-sre" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+<a class="btn" href="Sushobhit_Kumar_CV.pdf" download>Download CV</a></div></div>
 </section>
 </main>
 <footer><span>2026 Sushobhit Kumar</span><span>Site Reliability Engineering portfolio</span></footer>
@@ -194,7 +195,7 @@ k8s:'Learning and practice: Pods, Deployments, Services, Ingress, ConfigMaps, Se
 exp:'Dec 2022-present  SRE, Nehish Software Solutions (Airtel Payments Bank)\nMay 2021-Dec 2022  Linux Administrator, Trendy Dice',
 projects:'1. Production Connectivity Framework (Jenkins)\n2. Kong bank-wide custom plugin upgrade',
 certs:'AWS Certified Solutions Architect Associate\n3 Certificates of Appreciation, Airtel Payments Bank (FY25-26, FY26-27)',
-contact:'shobhitchaudhary038@gmail.com | https://wwww.linkedin.com/in/sushobhitkumar-sre'
+contact:'shobhitchaudhary038@gmail.com | linkedin.com/in/sushobhitkumar-sre'
 };
 function add(t,cls){var d=document.createElement('div');if(cls)d.className=cls;d.textContent=t;out.appendChild(d);out.scrollTop=out.scrollHeight}
 function run(raw){
@@ -227,6 +228,8 @@ try{localStorage.setItem('theme',n)}catch(e){}
 }
 try{var s=localStorage.getItem('theme');if(s)root.setAttribute('data-theme',s)}catch(e){}
 document.getElementById('theme').addEventListener('click',toggle);
+document.querySelectorAll('nav a[href^="#"]').forEach(function(a){a.addEventListener('click',function(e){var t=document.querySelector(a.getAttribute('href'));if(!t)return;e.preventDefault();t.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});if(history.replaceState)history.replaceState(null,'',location.pathname+location.search)})});
+if(location.hash==='#about'&&history.replaceState)history.replaceState(null,'',location.pathname+location.search);
 
 var links=[].slice.call(document.querySelectorAll('nav a'));
 if('IntersectionObserver' in window){
