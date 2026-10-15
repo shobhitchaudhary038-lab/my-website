@@ -13,89 +13,116 @@
 
     <style>
         :root {
-            --bg-dark: #0a0e17;
-            --card-bg: rgba(22, 27, 38, 0.75);
-            --border-color: #232d3f;
-            --accent-cyan: #00f2fe;
-            --accent-green: #00e676;
-            --accent-blue: #3b82f6;
-            --text-main: #e2e8f0;
+            --bg-dark: #090d16;
+            --card-bg: rgba(18, 24, 38, 0.85);
+            --border-color: #212938;
+            --accent-cyan: #38bdf8;
+            --accent-green: #34d399;
+            --accent-blue: #60a5fa;
+            --text-main: #f1f5f9;
             --text-muted: #94a3b8;
+            --subtext: #cbd5e1;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Roboto, -apple-system, sans-serif; }
-        body { background-color: var(--bg-dark); color: var(--text-main); line-height: 1.6; padding: 20px 10px; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
+        body { background-color: var(--bg-dark); color: var(--text-main); line-height: 1.65; padding: 24px 12px; }
 
-        .container { max-width: 1000px; margin: 20px auto; }
+        .container { max-width: 980px; margin: 20px auto; }
 
-        /* Glassmorphism Card Header */
+        /* Header Card */
         .header-card {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
-            backdrop-filter: blur(12px);
-            border-radius: 16px;
-            padding: 35px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            margin-bottom: 25px;
+            border-radius: 12px;
+            padding: 36px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+            margin-bottom: 24px;
             position: relative;
-            overflow: hidden;
         }
 
         .header-card::before {
             content: '';
             position: absolute;
-            top: 0; left: 0; right: 0; height: 4px;
+            top: 0; left: 0; right: 0; height: 3px;
             background: linear-gradient(90deg, var(--accent-cyan), var(--accent-blue), var(--accent-green));
+            border-top-left-radius: 12px;
+            border-top-right-radius: 12px;
         }
 
-        .profile-title h1 { font-size: 2.4rem; font-weight: 800; color: #fff; letter-spacing: -0.5px; }
-        .profile-title p { color: var(--accent-cyan); font-weight: 600; font-size: 1.1rem; margin-top: 4px; }
-        .status-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(0,230,118,0.1); color: var(--accent-green); border: 1px solid rgba(0,230,118,0.3); padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; margin-top: 12px; }
-        .status-dot { width: 8px; height: 8px; background: var(--accent-green); border-radius: 50%; box-shadow: 0 0 8px var(--accent-green); }
+        .profile-title h1 { font-size: 2.3rem; font-weight: 700; color: #ffffff; letter-spacing: -0.5px; }
+        .profile-title p { color: var(--accent-cyan); font-weight: 600; font-size: 1.05rem; margin-top: 4px; }
+        
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(52, 211, 153, 0.08);
+            color: var(--accent-green);
+            border: 1px solid rgba(52, 211, 153, 0.25);
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-top: 14px;
+            font-weight: 500;
+        }
+        .status-dot { width: 7px; height: 7px; background: var(--accent-green); border-radius: 50%; }
 
-        .contact-grid { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
-        .btn { text-decoration: none; padding: 10px 18px; border-radius: 8px; font-size: 0.9rem; font-weight: 600; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 8px; }
-        .btn-primary { background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan)); color: #000; }
-        .btn-secondary { background: rgba(255,255,255,0.05); color: var(--text-main); border: 1px solid var(--border-color); }
-        .btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,242,254,0.2); }
+        .contact-grid { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+        .btn {
+            text-decoration: none;
+            padding: 9px 18px;
+            border-radius: 6px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+        }
+        .btn-primary { background: var(--accent-cyan); color: #090d16; }
+        .btn-secondary { background: rgba(255,255,255,0.04); color: var(--text-main); border: 1px solid var(--border-color); }
+        .btn:hover { opacity: 0.9; transform: translateY(-1px); }
 
         /* Terminal Component */
         .terminal {
-            background: #05070c;
+            background: #030712;
             border: 1px solid var(--border-color);
-            border-radius: 12px;
+            border-radius: 10px;
             overflow: hidden;
-            margin-bottom: 25px;
-            font-family: 'Fira Code', 'Courier New', monospace;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+            margin-bottom: 24px;
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.5);
         }
-        .terminal-bar { background: #111622; padding: 10px 15px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid var(--border-color); }
-        .dot { width: 12px; height: 12px; border-radius: 50%; }
-        .dot-red { background: #ff5f56; } .dot-yellow { background: #ffbd2e; } .dot-green { background: #27c93f; }
-        .terminal-title { margin-left: auto; color: var(--text-muted); font-size: 0.8rem; }
-        .terminal-body { padding: 20px; color: #a9b7c6; font-size: 0.9rem; max-height: 250px; overflow-y: auto; }
+        .terminal-bar { background: #111827; padding: 10px 16px; display: flex; align-items: center; border-bottom: 1px solid var(--border-color); }
+        .dots { display: flex; gap: 6px; }
+        .dot { width: 11px; height: 11px; border-radius: 50%; }
+        .dot-red { background: #f87171; } .dot-yellow { background: #fbbf24; } .dot-green { background: #34d399; }
+        .terminal-title { margin-left: auto; color: var(--text-muted); font-size: 0.78rem; }
+        .terminal-body { padding: 20px; color: #d1d5db; font-size: 0.88rem; max-height: 240px; overflow-y: auto; }
         .prompt { color: var(--accent-green); }
-        .command-input { background: transparent; border: none; color: var(--accent-cyan); font-size: 0.9rem; font-family: inherit; width: 60%; outline: none; }
+        .command-input { background: transparent; border: none; color: var(--accent-cyan); font-size: 0.88rem; font-family: inherit; width: 60%; outline: none; }
 
-        /* Content Section Tabs */
-        .nav-tabs { display: flex; gap: 10px; margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; overflow-x: auto; }
-        .tab-btn { background: transparent; border: none; color: var(--text-muted); padding: 8px 16px; font-size: 0.95rem; font-weight: 600; cursor: pointer; border-radius: 6px; transition: 0.3s; }
-        .tab-btn.active { background: rgba(0,242,254,0.1); color: var(--accent-cyan); border: 1px solid rgba(0,242,254,0.3); }
+        /* Section Navigation Tabs */
+        .nav-tabs { display: flex; gap: 8px; margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 12px; overflow-x: auto; }
+        .tab-btn { background: transparent; border: none; color: var(--text-muted); padding: 8px 16px; font-size: 0.92rem; font-weight: 600; cursor: pointer; border-radius: 6px; transition: 0.2s; }
+        .tab-btn.active { background: rgba(56, 189, 248, 0.1); color: var(--accent-cyan); border: 1px solid rgba(56, 189, 248, 0.3); }
 
         /* Tab Content Cards */
-        .card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 25px; margin-bottom: 20px; }
-        .card h2 { color: #fff; font-size: 1.3rem; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+        .card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 10px; padding: 28px; margin-bottom: 20px; }
+        .card h2 { color: #ffffff; font-size: 1.25rem; font-weight: 600; margin-bottom: 16px; letter-spacing: -0.3px; }
 
-        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
-        .skill-box { background: rgba(10, 14, 23, 0.6); border: 1px solid var(--border-color); padding: 15px; border-radius: 8px; }
-        .skill-box h3 { color: var(--accent-cyan); font-size: 0.95rem; margin-bottom: 6px; }
+        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+        .skill-box { background: rgba(9, 13, 22, 0.7); border: 1px solid var(--border-color); padding: 18px; border-radius: 8px; }
+        .skill-box h3 { color: var(--accent-cyan); font-size: 0.92rem; font-weight: 600; margin-bottom: 6px; }
+        .skill-box p { color: var(--subtext); font-size: 0.88rem; }
 
-        .timeline-item { border-left: 2px solid var(--accent-blue); padding-left: 20px; margin-left: 5px; position: relative; margin-bottom: 20px; }
-        .timeline-item::before { content: ''; position: absolute; left: -7px; top: 0; width: 12px; height: 12px; background: var(--accent-blue); border-radius: 50%; }
-        .role { font-weight: bold; color: #fff; font-size: 1.05rem; }
-        .company { color: var(--accent-cyan); font-size: 0.9rem; margin-bottom: 8px; }
+        .timeline-item { border-left: 2px solid var(--accent-blue); padding-left: 20px; margin-left: 4px; position: relative; margin-bottom: 22px; }
+        .timeline-item::before { content: ''; position: absolute; left: -6px; top: 2px; width: 10px; height: 10px; background: var(--accent-blue); border-radius: 50%; }
+        .role { font-weight: 600; color: #ffffff; font-size: 1.02rem; }
+        .company { color: var(--accent-cyan); font-size: 0.88rem; margin-bottom: 8px; }
+        ul { padding-left: 18px; color: var(--subtext); font-size: 0.9rem; }
+        li { margin-bottom: 6px; }
 
-        footer { text-align: center; color: var(--text-muted); font-size: 0.85rem; padding: 20px; border-top: 1px solid var(--border-color); margin-top: 30px; }
+        footer { text-align: center; color: var(--text-muted); font-size: 0.82rem; padding: 24px 0; border-top: 1px solid var(--border-color); margin-top: 32px; }
     </style>
 </head>
 <body>
@@ -105,7 +132,7 @@
         <div class="header-card">
             <div class="profile-title">
                 <h1>Sushobhit Kumar</h1>
-                <p>Site Reliability Engineer || Linux Administrator || Production Support</p>
+                <p>Site Reliability Engineer | Linux Administrator | Production Support</p>
                 <div class="status-badge">
                     <span class="status-dot"></span>
                     Managing High-Availability Banking Microservices & AWS Infra
@@ -113,18 +140,20 @@
             </div>
 
             <div class="contact-grid">
-                <a href="mailto:shobhitchaudhary038@gmail.com" class="btn btn-primary">📧 Email Me</a>
-                <a href="https://linkedin.com/in/sushobhit-kumar-sre" target="_blank" class="btn btn-secondary">🔗 LinkedIn Profile</a>
-                <a href="tel:+918750754754" class="btn btn-secondary">📞 +91-8750754754</a>
+                <a href="mailto:shobhitchaudhary038@gmail.com" class="btn btn-primary">Email Me</a>
+                <a href="https://linkedin.com/in/sushobhit-kumar-sre" target="_blank" class="btn btn-secondary">LinkedIn Profile</a>
+                <a href="tel:+918750754754" class="btn btn-secondary">+91-8750754754</a>
             </div>
         </div>
 
         <!-- Interactive Terminal Simulator -->
         <div class="terminal">
             <div class="terminal-bar">
-                <span class="dot dot-red"></span>
-                <span class="dot dot-yellow"></span>
-                <span class="dot dot-green"></span>
+                <div class="dots">
+                    <span class="dot dot-red"></span>
+                    <span class="dot dot-yellow"></span>
+                    <span class="dot dot-green"></span>
+                </div>
                 <span class="terminal-title">bash — sushobhit@sre-bastion:~</span>
             </div>
             <div class="terminal-body" id="terminal-output">
@@ -145,11 +174,11 @@
         <!-- TAB 1: OVERVIEW -->
         <div id="tab-overview" class="tab-content">
             <div class="card">
-                <h2>⚡ Professional Summary</h2>
-                <p>Site Reliability Engineer with 5+ years of experience supporting and optimizing high-stakes production banking systems. Proven track record in Linux administration, AWS infrastructure, incident management, root cause analysis (RCA), Kong API Gateway, and automated CI/CD deployments.</p>
+                <h2>Professional Summary</h2>
+                <p style="color: var(--subtext); font-size: 0.95rem;">Site Reliability Engineer with 5+ years of experience supporting and optimizing high-stakes production banking systems. Proven track record in Linux administration, AWS infrastructure, incident management, root cause analysis (RCA), Kong API Gateway, and automated CI/CD deployments.</p>
             </div>
             <div class="card">
-                <h2>🎯 Core Competencies</h2>
+                <h2>Core Competencies</h2>
                 <div class="grid-2">
                     <div class="skill-box"><h3>Incident & RCA</h3><p>L2/L3 Incident Management, Root Cause Analysis, 24/7 Production Support.</p></div>
                     <div class="skill-box"><h3>API & Gateways</h3><p>Kong API Gateway, NGINX Reverse Proxy, Custom Plugin Redevelopment.</p></div>
@@ -162,7 +191,7 @@
         <!-- TAB 2: EXPERIENCE -->
         <div id="tab-experience" class="tab-content" style="display: none;">
             <div class="card">
-                <h2>💼 Professional Experience</h2>
+                <h2>Professional Experience</h2>
                 <div class="timeline-item">
                     <div class="role">Site Reliability Engineer</div>
                     <div class="company">Nehish Software Solutions (Airtel Payments Bank Project) | Dec 2022 – Present</div>
@@ -187,7 +216,7 @@
         <!-- TAB 3: TECH STACK -->
         <div id="tab-skills" class="tab-content" style="display: none;">
             <div class="card">
-                <h2>🛠️ Technical Ecosystem</h2>
+                <h2>Technical Ecosystem</h2>
                 <div class="grid-2">
                     <div class="skill-box"><h3>Operating Systems</h3><p>Linux (RHEL, CentOS, Ubuntu)</p></div>
                     <div class="skill-box"><h3>Cloud & Infra</h3><p>AWS (EC2, VPC, S3, IAM, CloudWatch, Auto Scaling)</p></div>
@@ -200,7 +229,7 @@
         <!-- TAB 4: AWARDS -->
         <div id="tab-awards" class="tab-content" style="display: none;">
             <div class="card">
-                <h2>🏆 Certifications & Recognitions</h2>
+                <h2>Certifications & Recognitions</h2>
                 <ul>
                     <li style="margin-bottom: 12px;"><strong>AWS Certified Solutions Architect – Associate</strong></li>
                     <li style="margin-bottom: 12px;"><strong>Certificate of Appreciation (Airtel Payments Bank, July 2026):</strong> Recognized for technical expertise and scripting excellence.</li>
@@ -210,12 +239,11 @@
         </div>
 
         <footer>
-            <p>© 2026 Sushobhit Kumar | Designed for DevOps & SRE Production Operations</p>
+            <p>© 2026 Sushobhit Kumar | Site Reliability Engineering & Infrastructure Portfolio</p>
         </footer>
     </div>
 
     <script>
-        // Tab Switcher Script
         function switchTab(tabName) {
             document.querySelectorAll('.tab-content').forEach(el => el.style.display = 'none');
             document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
@@ -223,7 +251,6 @@
             event.target.classList.add('active');
         }
 
-        // Interactive Terminal Command Simulator
         const input = document.getElementById('terminal-input');
         const output = document.getElementById('terminal-output');
 
