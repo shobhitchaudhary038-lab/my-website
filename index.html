@@ -4,17 +4,25 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Sushobhit Kumar | Site Reliability Engineer</title>
-<meta name="description" content="Site Reliability Engineer with 5+ years in banking production support: Linux, AWS, Kong API Gateway, Kubernetes, observability.">
+<meta name="description" content="Site Reliability Engineer with 5+ years in banking production support: Linux, AWS, Kong API Gateway, NGINX, observability.">
 <meta property="og:title" content="Sushobhit Kumar - Site Reliability Engineer">
-<meta property="og:description" content="5+ years of SRE and production support in banking. AWS, Kong API Gateway, Kubernetes, observability.">
+<meta property="og:description" content="5+ years of SRE and production support in banking. Linux, AWS, Kong API Gateway, NGINX, observability.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://shobhitchaudhary038-lab.github.io/my-website/">
+<meta property="og:image" content="https://shobhitchaudhary038-lab.github.io/my-website/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Sushobhit Kumar">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0a0f1a">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230a0f1a'/%3E%3Ctext x='32' y='42' font-family='monospace' font-size='28' font-weight='700' fill='%234cc2ff' text-anchor='middle'%3ESK%3C/text%3E%3C/svg%3E">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Sushobhit Kumar","jobTitle":"Site Reliability Engineer","worksFor":{"@type":"Organization","name":"Nehish Software Solutions"},"address":{"@type":"PostalAddress","addressLocality":"Gurugram","addressCountry":"IN"},"url":"https://shobhitchaudhary038-lab.github.io/my-website/","sameAs":["https://www.linkedin.com/in/sushobhitkumar-sre"]}</script>
 <style>
-:root{--bg:#0a0f1a;--panel:#111827;--line:#233047;--ink:#eef2f7;--mute:#9aa8bd;--sub:#cbd5e1;--acc:#4cc2ff;--ok:#3ddc97;--term:#05080f;--btn-ink:#06101c;
+:root{--bg:#0a0f1a;--panel:#111827;--line:#233047;--ink:#eef2f7;--mute:#9aa8bd;--sub:#cbd5e1;--acc:#4cc2ff;--ok:#3ddc97;--term:#05080f;--btn-ink:#06101c;--gold:#e5b94e;
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#f5f7fb;--panel:#fff;--line:#d9e0ec;--ink:#0f172a;--mute:#53627a;--sub:#334155;--acc:#0369a1;--ok:#047857;--term:#0b1220;--btn-ink:#fff}}
-:root[data-theme="light"]{--bg:#f5f7fb;--panel:#fff;--line:#d9e0ec;--ink:#0f172a;--mute:#53627a;--sub:#334155;--acc:#0369a1;--ok:#047857;--term:#0b1220;--btn-ink:#fff}
-:root[data-theme="dark"]{--bg:#0a0f1a;--panel:#111827;--line:#233047;--ink:#eef2f7;--mute:#9aa8bd;--sub:#cbd5e1;--acc:#4cc2ff;--ok:#3ddc97;--term:#05080f;--btn-ink:#06101c}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#f5f7fb;--panel:#fff;--line:#d9e0ec;--ink:#0f172a;--mute:#53627a;--sub:#334155;--acc:#0369a1;--ok:#047857;--term:#0b1220;--btn-ink:#fff;--gold:#b45309}}
+:root[data-theme="light"]{--bg:#f5f7fb;--panel:#fff;--line:#d9e0ec;--ink:#0f172a;--mute:#53627a;--sub:#334155;--acc:#0369a1;--ok:#047857;--term:#0b1220;--btn-ink:#fff;--gold:#b45309}
+:root[data-theme="dark"]{--bg:#0a0f1a;--panel:#111827;--line:#233047;--ink:#eef2f7;--mute:#9aa8bd;--sub:#cbd5e1;--acc:#4cc2ff;--ok:#3ddc97;--term:#05080f;--btn-ink:#06101c;--gold:#e5b94e}
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:calc(64px + env(safe-area-inset-top,0px))}
 body{background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased}
@@ -23,11 +31,11 @@ a{color:var(--acc)}
 .skip{position:absolute;left:-999px}.skip:focus{left:12px;top:12px;background:var(--acc);color:var(--btn-ink);padding:8px 12px;border-radius:6px;z-index:50}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:30}
 nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
-nav .in{max-width:960px;margin:auto;display:flex;gap:4px;align-items:center;padding:10px 16px;overflow-x:auto}
+nav .in{max-width:1180px;margin:auto;display:flex;gap:4px;align-items:center;padding:10px 16px;overflow-x:auto}
 nav a{color:var(--mute);text-decoration:none;font-size:.9rem;font-weight:600;padding:6px 12px;border-radius:6px;white-space:nowrap}
 nav a:hover,nav a.on{color:var(--ink);background:var(--panel)}
 nav button{margin-left:auto;background:none;border:1px solid var(--line);color:var(--mute);border-radius:6px;padding:5px 10px;font-size:.82rem;cursor:pointer}
-main{max-width:960px;margin:auto;padding:0 16px 40px}
+main{max-width:1180px;margin:auto;padding:0 16px 40px}
 section{padding:44px 0 8px}
 h2{font-size:1.35rem;letter-spacing:-.01em;margin-bottom:18px}
 .hero{padding-top:56px}
@@ -62,15 +70,64 @@ ul{padding-left:18px;color:var(--sub);font-size:.94rem}li{margin-bottom:6px}
 .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
 .chips span{font-size:.78rem;color:var(--sub);border:1px solid var(--line);border-radius:999px;padding:2px 10px}
 .awards li{margin-bottom:12px}.awards strong{color:var(--ink)}
-footer{max-width:960px;margin:0 auto;padding:22px 16px;border-top:1px solid var(--line);color:var(--mute);font-size:.85rem;display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between}
+footer{position:relative;z-index:1;background:var(--bg);box-shadow:0 0 0 100vmax var(--bg);clip-path:inset(0 -100vmax);max-width:1180px;margin:0 auto;padding:22px 16px;border-top:1px solid var(--line);color:var(--mute);font-size:.85rem;display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between}
 footer .flinks{position:static;display:flex;flex-wrap:wrap;gap:6px 18px;border:0;background:none}
 footer .flinks a{color:var(--mute);text-decoration:none;font-weight:600}
 footer .flinks a:hover{color:var(--acc)}
+.bg{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
+.bg .glow{position:absolute;inset:0;background:radial-gradient(60% 50% at 20% 25%,color-mix(in srgb,var(--acc) 14%,transparent),transparent),radial-gradient(50% 45% at 85% 80%,color-mix(in srgb,var(--ok) 12%,transparent),transparent)}
+.bg .wave{position:absolute;left:0;bottom:0;width:200%;height:26vh;animation:flow 24s linear infinite}
+.bg .w2{height:20vh;animation-duration:36s;animation-direction:reverse}
+@keyframes flow{to{transform:translateX(-50%)}}
+.dash{animation:dash 1.4s linear infinite}
+@keyframes dash{to{stroke-dashoffset:-24}}
+@media(prefers-reduced-motion:reduce){.bg *{animation:none!important}}
+.hero h1 .w{display:inline-block;white-space:nowrap}
+.hero h1 .ch{display:inline-block;opacity:0;transform:translateY(12px);animation:chIn .7s ease forwards}
+@keyframes chIn{to{opacity:1;transform:none}}
+.hero .role,.hero p.lead{animation:fadeUp .9s ease both;animation-delay:1.5s}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}}
+@media(prefers-reduced-motion:reduce){.hero h1 .ch,.hero .role,.hero p.lead{animation:none;opacity:1;transform:none}}
+@keyframes blink{50%{opacity:0}}
+.tag{font:600 .78rem/1 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.16em;text-transform:uppercase;color:var(--ok);margin-bottom:16px}
+.typed{margin-top:14px;font-size:1.35rem;font-weight:600;color:var(--ink);min-height:1.8em;animation:fadeUp .9s ease both;animation-delay:1.5s}
+.tw{text-shadow:none;font-weight:800;background:linear-gradient(90deg,var(--acc),var(--ok),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+.cur{display:inline-block;width:2px;height:1.1em;background:var(--ok);margin-left:3px;vertical-align:-.18em;animation:blink 1s steps(1) infinite}
+.btn{transition:transform .2s,box-shadow .25s,border-color .2s,background-position .45s}
+.btn:hover{transform:translateY(-2px);border-color:var(--acc);box-shadow:0 8px 20px color-mix(in srgb,var(--acc) 28%,transparent)}
+.btn:active{transform:translateY(0)}
+.btn.p{background:linear-gradient(110deg,var(--acc),var(--ok),var(--acc));background-size:220% 100%;background-position:0 0;border-color:transparent;font-weight:700;box-shadow:0 0 28px color-mix(in srgb,var(--acc) 38%,transparent)}
+.btn.p:hover{background-position:100% 0;border-color:transparent;box-shadow:0 0 40px color-mix(in srgb,var(--ok) 55%,transparent)}
+.bg .loop{position:absolute;left:50%;top:50%;width:min(1100px,96vw);height:auto;transform:translate(-50%,-46%);opacity:.27}
+.hero p.lead,.hero .facts,.hero .typed{text-shadow:0 0 10px var(--bg),0 0 4px var(--bg)}
+.nd{fill:var(--panel);stroke:var(--acc);stroke-width:2;transition:fill .3s,stroke .3s}
+.nd.hot{fill:var(--ok);stroke:var(--ok)}
+.loop text{fill:var(--sub);font-size:14px;font-weight:600}
+@media(max-width:600px){.bg .loop #nodes text{display:none}}
+@media(prefers-reduced-motion:reduce){.typed,.cur{animation:none}}
+.hero{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:48px;align-items:start}
+.hr{position:sticky;top:96px}
+.hr .term{margin-top:6px}
+.case{grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr))}
+@media(max-width:980px){.hero{grid-template-columns:1fr;gap:0}.hr{position:static}.hr .term{margin-top:34px}}
+@media print{.bg{display:none}}
 @media print{nav,.term,.cta,body::before{display:none}:root{--bg:#fff;--panel:#fff;--ink:#000;--sub:#222;--mute:#444;--line:#bbb;--acc:#034d78}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
 </head>
 <body>
+<div class='bg' aria-hidden='true'><div class='glow'></div>
+<svg class='loop' id='loop' viewBox='-40 0 1080 400' xmlns='http://www.w3.org/2000/svg' font-family='system-ui,sans-serif'>
+<path d='M500 200C420 100 320 60 240 60C140 60 80 120 80 200C80 280 140 340 240 340C320 340 420 300 500 200C580 100 680 60 760 60C860 60 920 120 920 200C920 280 860 340 760 340C680 340 580 300 500 200Z' fill='none' style='stroke:var(--acc);stroke-opacity:.12;stroke-width:30;stroke-linejoin:round'/>
+<path id='lp' d='M500 200C420 100 320 60 240 60C140 60 80 120 80 200C80 280 140 340 240 340C320 340 420 300 500 200C580 100 680 60 760 60C860 60 920 120 920 200C920 280 860 340 760 340C680 340 580 300 500 200Z' fill='none' class='dash' style='stroke:var(--acc);stroke-width:2;stroke-dasharray:8 16'/>
+<text x='240' y='214' text-anchor='middle' style='font-size:64px;font-weight:800;fill:var(--acc);opacity:.2'>CI</text>
+<text x='760' y='214' text-anchor='middle' style='font-size:64px;font-weight:800;fill:var(--ok);opacity:.2'>CD</text>
+<g id='nodes'></g>
+<circle id='k1' r='7' style='fill:var(--ok)'/><circle id='k2' r='7' style='fill:var(--ok)'/>
+</svg>
+<svg class='wave w2' viewBox='0 0 2880 200' preserveAspectRatio='none'><path style='fill:var(--ok);fill-opacity:.07' d='M0 110Q180 160 360 110T720 110T1080 110T1440 110T1800 110T2160 110T2520 110T2880 110V200H0Z'/></svg>
+<svg class='wave' viewBox='0 0 2880 200' preserveAspectRatio='none'><path style='fill:var(--acc);fill-opacity:.09' d='M0 100Q180 40 360 100T720 100T1080 100T1440 100T1800 100T2160 100T2520 100T2880 100V200H0Z'/></svg>
+</div>
 <a class="skip" href="#main">Skip to content</a>
 <nav aria-label="Sections"><div class="in">
 <a href="#about">About</a><a href="#work">Selected work</a><a href="#experience">Experience</a><a href="#stack">Stack</a><a href="#recognition">Recognition</a><a href="#contact">Contact</a>
@@ -79,9 +136,12 @@ footer .flinks a:hover{color:var(--acc)}
 
 <main id="main">
 <section class="hero" id="about">
+<div class="hl">
+<p class="tag">SRE for production systems</p>
 <h1>Sushobhit Kumar</h1>
 <p class="role">Site Reliability Engineer, Linux Administrator, Production Support</p>
-<p class="lead">Site Reliability Engineer with 5+ years of comprehensive experience maintaining high-availability banking production systems. Specialized in Linux administration, AWS cloud infrastructure, Kubernetes orchestration, and API traffic routing via NGINX and Kong. Expert in proactive observability using Grafana, Prometheus, and the ELK stack, coupled with rigorous Root Cause Analysis (RCA) to minimize system downtime. Proven track record in automating operational workflows and managing secure deployments utilizing Jenkins, Kafka, Redis, and HashiCorp Vault at Airtel Payments Bank.</p>
+<p class="typed" aria-label="Hands-on with Linux, AWS, Kong, NGINX, Jenkins, Kafka, Grafana, Prometheus and Ansible">Hands-on with <span class="tw" id="tw" aria-hidden="true"></span><i class="cur" aria-hidden="true"></i></p>
+<p class="lead">Site Reliability Engineer with 5+ years of comprehensive experience maintaining high-availability banking production systems. Specialized in Linux administration, AWS cloud infrastructure, Kubernetes orchestration, and API traffic routing via NGINX and Kong. Expert in Proactive Observability using Grafana, Prometheus, and the ELK stack, coupled with rigorous Root Cause Analysis (RCA) to minimize system downtime. Proven track record in automating operational workflows and managing secure deployments utilizing Bash, Ansible, Jenkins, Kafka, Redis, and HashiCorp Vault at Airtel Payments Bank.</p>
 <div class="facts">
 <span><b>5+ years</b> in production support and SRE</span>
 <span><b>Based in</b> Gurugram, India</span>
@@ -95,11 +155,13 @@ footer .flinks a:hover{color:var(--acc)}
 <a class="btn" href="tel:+918750754754">+91-8750754754</a>
 <a class="btn" href="Sushobhit_Kumar_CV.pdf" download>Download CV</a>
 </div>
-
+</div>
+<div class="hr">
 <div class="term" role="region" aria-label="Interactive terminal">
 <div class="tbar"><span>sushobhit@sre-bastion: ~</span><span>try: help</span></div>
 <div id="out" aria-live="polite"></div>
 <div class="row"><label class="ps" for="in">$</label><input id="in" type="text" autocomplete="off" spellcheck="false" autocapitalize="off" placeholder="type a command, press Enter"></div>
+</div>
 </div>
 </section>
 
@@ -164,7 +226,7 @@ footer .flinks a:hover{color:var(--acc)}
 <div class="card"><ul class="awards">
 <li><strong>AWS Certified Solutions Architect - Associate</strong></li>
 <li><strong>Certificate of Appreciation, Airtel Payments Bank (FY26-27, July 2026).</strong> For technical expertise, scripting excellence and ownership, consistently delivering results while taking on new challenges.</li>
-<li><strong>Certificate of Appreciation, Airtel Payments Bank (FY25-26).</strong> For redeveloping bank-wide custom plugins for the new Kong version and delivering the upgrade on time.</li>
+<li><strong>Certificate of Appreciation, Airtel Payments Bank (FY25-26).</strong> For redeveloping bank-wide custom plugins with Development Team for the new Kong version and delivering the upgrade on time.</li>
 <li><strong>Certificate of Appreciation, Airtel Payments Bank (FY25-26).</strong> For ownership and commitment toward efficiency and reliability.</li>
 </ul></div>
 </section>
@@ -173,20 +235,21 @@ footer .flinks a:hover{color:var(--acc)}
 <h2>Education and languages</h2>
 <div class="card"><ul>
 <li><strong>MBA, Finance</strong></li>
-<li>English (professional working proficiency), Hindi (fluent)</li>
+<li>English (Professional Working Proficiency), Hindi (Fluent)</li>
 </ul></div>
 </section>
 
 <section id="contact">
 <h2>Contact</h2>
-<div class="card"><p style="color:var(--sub)">Open to SRE, production support and infrastructure roles. The fastest way to reach me is call/email.</p>
+<div class="card"><p style="color:var(--sub)">Open to SRE, Production Support and Infrastructure Roles. The fastest way to reach me is call or email.</p>
 <div class="cta"><a class="btn p" href="mailto:shobhitchaudhary038@gmail.com?subject=Inquiry%20regarding%20SRE%20Role">shobhitchaudhary038@gmail.com</a>
 <a class="btn" href="https://www.linkedin.com/in/sushobhitkumar-sre" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+<a class="btn" href="tel:+918750754754">+91-8750754754</a>
 <a class="btn" href="Sushobhit_Kumar_CV.pdf" download>Download CV</a></div></div>
 </section>
 </main>
 <footer>
-<div><div>© 2026 Sushobhit Kumar. All rights reserved.</div><div>Site Reliability Engineer, Gurugram, India</div></div>
+<div><div>&copy; 2026 Sushobhit Kumar. All rights reserved.</div><div>Site Reliability Engineer, Gurugram, India</div></div>
 <nav aria-label="Footer links" class="flinks"><a href="mailto:shobhitchaudhary038@gmail.com">Email</a><a href="https://www.linkedin.com/in/sushobhitkumar-sre" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="Sushobhit_Kumar_CV.pdf" download>Download CV</a><a href="#about">Back to top</a></nav>
 </footer>
 
@@ -225,6 +288,45 @@ add('Welcome. Type help to list commands.');
 var h=document.createElement('div');h.className='hint';h.innerHTML='Quick run: <button type="button" data-c="projects">projects</button> <button type="button" data-c="skills">skills</button> <button type="button" data-c="certs">certs</button>';
 out.appendChild(h);
 h.addEventListener('click',function(e){var c=e.target.getAttribute&&e.target.getAttribute('data-c');if(c)run(c)});
+
+var h1=document.querySelector('.hero h1');
+if(h1){var nm=h1.textContent.trim(),k=0;h1.setAttribute('aria-label',nm);h1.textContent='';
+nm.split(' ').forEach(function(word,wi){
+if(wi)h1.appendChild(document.createTextNode(' '));
+var w=document.createElement('span');w.className='w';w.setAttribute('aria-hidden','true');
+word.split('').forEach(function(ch){var s=document.createElement('span');s.className='ch';s.textContent=ch;s.style.animationDelay=(0.2+k*0.09)+'s';k++;w.appendChild(s)});
+h1.appendChild(w)})}
+var words=['Linux','AWS','Kong','NGINX','Jenkins','Kafka','Grafana','Prometheus','Ansible'],tw=document.getElementById('tw'),wi=0,ci=0,del=false,rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+function tick(){var w=words[wi];ci+=del?-1:1;tw.textContent=w.slice(0,ci);var d=del?45:95;if(!del&&ci===w.length){del=true;d=1400}else if(del&&ci===0){del=false;wi=(wi+1)%words.length;d=350}setTimeout(tick,d)}
+if(rm){tw.textContent='Linux, AWS, Kong, NGINX'}else{setTimeout(tick,1700)}
+
+var demoOn=!rm,started=false;
+function stopDemo(){if(demoOn){demoOn=false;inp.value=''}}
+['focus','pointerdown','keydown'].forEach(function(ev){inp.addEventListener(ev,stopDemo)});
+function sleep(ms){return new Promise(function(r){setTimeout(r,ms)})}
+async function demo(){var list=['whoami','projects','certs'];
+for(var i=0;i<list.length&&demoOn;i++){inp.value='';
+for(var j=0;j<list[i].length&&demoOn;j++){inp.value+=list[i][j];await sleep(90)}
+if(!demoOn)break;await sleep(350);run(inp.value);inp.value='';await sleep(1800)}}
+function startDemo(){if(started||!demoOn)return;started=true;setTimeout(demo,1200)}
+var tm=document.querySelector('.term');
+if('IntersectionObserver' in window){new IntersectionObserver(function(es,o){if(es[0].isIntersecting){startDemo();o.disconnect()}},{threshold:.6}).observe(tm)}else{setTimeout(startDemo,3000)}
+
+(function(){var svg=document.getElementById('loop');if(!svg)return;
+var path=svg.querySelector('#lp'),L=path.getTotalLength(),NS='http://www.w3.org/2000/svg',gN=svg.querySelector('#nodes'),nodes=[];
+[['Plan',.09],['Code',.2],['Build',.31],['Test',.43],['Release',.59],['Deploy',.7],['Operate',.81],['Monitor',.93]].forEach(function(s){
+var p=path.getPointAtLength(L*s[1]),cx=p.x<500?240:760,dx=p.x-cx,dy=p.y-200,m=Math.hypot(dx,dy)||1,ux=dx/m,uy=dy/m;
+var c=document.createElementNS(NS,'circle');c.setAttribute('cx',p.x);c.setAttribute('cy',p.y);c.setAttribute('r',8);c.setAttribute('class','nd');
+var t=document.createElementNS(NS,'text');t.setAttribute('x',p.x+ux*24);t.setAttribute('y',p.y+uy*24+5);t.setAttribute('text-anchor',Math.abs(ux)<.35?'middle':ux>0?'start':'end');t.textContent=s[0];
+gN.appendChild(c);gN.appendChild(t);nodes.push({c:c,f:s[1]})});
+var pk=[svg.querySelector('#k1'),svg.querySelector('#k2')];
+if(rm){pk.forEach(function(k){k.remove()});return}
+var t0=performance.now();
+function frame(now){var u=((now-t0)/18000)%1;
+pk.forEach(function(k,i){var p=path.getPointAtLength(L*((u+i*.5)%1));k.setAttribute('cx',p.x);k.setAttribute('cy',p.y)});
+nodes.forEach(function(n){var hot=pk.some(function(k,i){var d=Math.abs(((u+i*.5)%1)-n.f);return Math.min(d,1-d)<.025});n.c.classList.toggle('hot',hot)});
+requestAnimationFrame(frame)}
+requestAnimationFrame(frame)})();
 
 var root=document.documentElement;
 function toggle(){
