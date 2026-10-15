@@ -7,15 +7,15 @@
 
     <!-- Social Media / Open Graph Meta Tags -->
     <meta property="og:title" content="Sushobhit Kumar — Site Reliability Engineer Portfolio">
-    <meta property="og:description" content="5+ Years Experience in Linux Administration, AWS, NGINX, Kong API Gateway, and High-Availability Banking Systems.">
+    <meta property="og:description" content="5+ Years SRE & Production Support in Banking & Linux Systems. AWS, Kong API Gateway, Kubernetes, and Observability.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://shobhitchaudhary038-lab.github.io/my-website/">
 
     <style>
         :root {
-            --bg-dark: #090d16;
-            --card-bg: rgba(18, 24, 38, 0.85);
-            --border-color: #212938;
+            --bg-dark: #070a12;
+            --card-bg: rgba(14, 20, 32, 0.9);
+            --border-color: #1e293b;
             --accent-cyan: #38bdf8;
             --accent-green: #34d399;
             --accent-blue: #60a5fa;
@@ -25,7 +25,15 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
-        body { background-color: var(--bg-dark); color: var(--text-main); line-height: 1.65; padding: 24px 12px; }
+        body { 
+            background-color: var(--bg-dark); 
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(56, 189, 248, 0.06) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(52, 211, 153, 0.05) 0%, transparent 40%);
+            color: var(--text-main); 
+            line-height: 1.65; 
+            padding: 24px 12px; 
+        }
 
         .container { max-width: 980px; margin: 20px auto; }
 
@@ -35,7 +43,7 @@
             border: 1px solid var(--border-color);
             border-radius: 12px;
             padding: 36px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+            box-shadow: 0 10px 35px rgba(0,0,0,0.5);
             margin-bottom: 24px;
             position: relative;
         }
@@ -78,7 +86,7 @@
             display: inline-flex;
             align-items: center;
         }
-        .btn-primary { background: var(--accent-cyan); color: #090d16; }
+        .btn-primary { background: var(--accent-cyan); color: #070a12; }
         .btn-secondary { background: rgba(255,255,255,0.04); color: var(--text-main); border: 1px solid var(--border-color); }
         .btn:hover { opacity: 0.9; transform: translateY(-1px); }
 
@@ -111,7 +119,7 @@
         .card h2 { color: #ffffff; font-size: 1.25rem; font-weight: 600; margin-bottom: 16px; letter-spacing: -0.3px; }
 
         .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
-        .skill-box { background: rgba(9, 13, 22, 0.7); border: 1px solid var(--border-color); padding: 18px; border-radius: 8px; }
+        .skill-box { background: rgba(7, 10, 18, 0.7); border: 1px solid var(--border-color); padding: 18px; border-radius: 8px; }
         .skill-box h3 { color: var(--accent-cyan); font-size: 0.92rem; font-weight: 600; margin-bottom: 6px; }
         .skill-box p { color: var(--subtext); font-size: 0.88rem; }
 
@@ -132,16 +140,16 @@
         <div class="header-card">
             <div class="profile-title">
                 <h1>Sushobhit Kumar</h1>
-                <p>Site Reliability Engineer | Linux Administrator | Production Support</p>
+                <p>Site Reliability Engineer | Linux Administrator | Production Support Engineer</p>
                 <div class="status-badge">
                     <span class="status-dot"></span>
-                    Managing High-Availability Banking Microservices & AWS Infra
+                    Managing Banking Production Systems, AWS & Kubernetes Infrastructure
                 </div>
             </div>
 
             <div class="contact-grid">
-                <a href="mailto:shobhitchaudhary038@gmail.com" class="btn btn-primary">Email Me</a>
-                <a href="https://linkedin.com/in/sushobhit-kumar-sre" target="_blank" class="btn btn-secondary">LinkedIn Profile</a>
+                <a href="mailto:shobhitchaudhary038@gmail.com?subject=Inquiry%20regarding%20SRE%20Role" class="btn btn-primary">Email Me</a>
+                <a href="https://www.linkedin.com/in/sushobhit-kumar-sre" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">LinkedIn Profile</a>
                 <a href="tel:+918750754754" class="btn btn-secondary">+91-8750754754</a>
             </div>
         </div>
@@ -157,7 +165,7 @@
                 <span class="terminal-title">bash — sushobhit@sre-bastion:~</span>
             </div>
             <div class="terminal-body" id="terminal-output">
-                <div>Welcome to Sushobhit's SRE Terminal. Type <span style="color:var(--accent-cyan)">'help'</span> or <span style="color:var(--accent-cyan)">'skills'</span> or <span style="color:var(--accent-cyan)">'exp'</span> to run commands.</div>
+                <div>Welcome to Sushobhit's SRE Terminal. Type <span style="color:var(--accent-cyan)">'help'</span>, <span style="color:var(--accent-cyan)">'skills'</span>, <span style="color:var(--accent-cyan)">'k8s'</span> or <span style="color:var(--accent-cyan)">'exp'</span> to run commands.</div>
                 <br>
                 <div><span class="prompt">sushobhit@sre-bastion:~$</span> <input type="text" class="command-input" id="terminal-input" placeholder="Type a command..." autofocus></div>
             </div>
@@ -167,7 +175,7 @@
         <div class="nav-tabs">
             <button class="tab-btn active" onclick="switchTab('overview')">Overview</button>
             <button class="tab-btn" onclick="switchTab('experience')">Experience</button>
-            <button class="tab-btn" onclick="switchTab('skills')">Tech Stack</button>
+            <button class="tab-btn" onclick="switchTab('skills')">Tech Stack & K8s</button>
             <button class="tab-btn" onclick="switchTab('awards')">Awards & Certs</button>
         </div>
 
@@ -175,15 +183,15 @@
         <div id="tab-overview" class="tab-content">
             <div class="card">
                 <h2>Professional Summary</h2>
-                <p style="color: var(--subtext); font-size: 0.95rem;">Site Reliability Engineer with 5+ years of experience supporting and optimizing high-stakes production banking systems. Proven track record in Linux administration, AWS infrastructure, incident management, root cause analysis (RCA), Kong API Gateway, and automated CI/CD deployments.</p>
+                <p style="color: var(--subtext); font-size: 0.95rem;">Site Reliability Engineer with 5+ years of comprehensive experience supporting and optimizing critical production systems in high-stakes banking environments. Skilled in Linux administration, AWS infrastructure, Kubernetes orchestration, incident management, root cause analysis (RCA), production deployment, change management, monitoring, automation, and CI/CD support.</p>
             </div>
             <div class="card">
                 <h2>Core Competencies</h2>
                 <div class="grid-2">
-                    <div class="skill-box"><h3>Incident & RCA</h3><p>L2/L3 Incident Management, Root Cause Analysis, 24/7 Production Support.</p></div>
-                    <div class="skill-box"><h3>API & Gateways</h3><p>Kong API Gateway, NGINX Reverse Proxy, Custom Plugin Redevelopment.</p></div>
-                    <div class="skill-box"><h3>Monitoring & APM</h3><p>Grafana, Prometheus, ELK Stack, Kibana, Elastic APM.</p></div>
-                    <div class="skill-box"><h3>Automation & CI/CD</h3><p>Shell Scripting (Bash), Ansible, Jenkins Pipelines, HashiCorp Vault.</p></div>
+                    <div class="skill-box"><h3>Incident Management & RCA</h3><p>L2/L3 Incident Management, Root Cause Analysis, 24/7 Production Support, Ticketing via ServiceNow & Zoho SDP.</p></div>
+                    <div class="skill-box"><h3>API Gateways & Routing</h3><p>Kong API Gateway custom plugin upgrades, NGINX Reverse Proxy, traffic routing management.</p></div>
+                    <div class="skill-box"><h3>Monitoring & Observability</h3><p>Grafana, Prometheus, ELK Stack, Kibana, Elastic APM, and Alerting.</p></div>
+                    <div class="skill-box"><h3>Automation & CI/CD</h3><p>Shell Scripting (Bash), Ansible playbooks, Jenkins pipelines, HashiCorp Vault secret management.</p></div>
                 </div>
             </div>
         </div>
@@ -196,44 +204,73 @@
                     <div class="role">Site Reliability Engineer</div>
                     <div class="company">Nehish Software Solutions (Airtel Payments Bank Project) | Dec 2022 – Present</div>
                     <ul>
-                        <li>Deliver L2/L3 production support for critical core banking systems on Linux & AWS.</li>
-                        <li>Automated end-to-end production connectivity checks using Jenkins & custom scripting.</li>
-                        <li>Configured and upgraded Kong API Gateway & custom plugins bank-wide.</li>
-                        <li>Monitored microservices integrated with Oracle DB, Redis, Aerospike, and Apache Kafka.</li>
+                        <li>Provide L2/L3 production support for critical banking applications running on Linux and AWS infrastructure.</li>
+                        <li>Developed and implemented a Production Connectivity Framework for automated end-to-end production connectivity validation across multiple source and destination servers via Jenkins.</li>
+                        <li>Monitor application performance using Grafana, Kibana, ELK Stack, Prometheus, and Elastic APM.</li>
+                        <li>Perform incident management, ticketing, and troubleshooting using Zoho Service Desk Plus (SDP), ServiceNow, and JIRA.</li>
+                        <li>Manage and troubleshoot NGINX reverse proxy and Kong API Gateway for API traffic routing, including bank-wide custom plugin redevelopments.</li>
+                        <li>Support high-availability microservices integrated with Oracle, Redis, Aerospike, and Kafka.</li>
+                        <li>Develop automation scripts using Shell scripting and Ansible for routine and operational activities.</li>
+                        <li>Support Jenkins-based CI/CD deployments, release activities, and change implementation.</li>
+                        <li>Integrate and manage HashiCorp Vault for secure secret management.</li>
                     </ul>
                 </div>
                 <div class="timeline-item">
                     <div class="role">Linux Administrator</div>
                     <div class="company">Trendy Dice, Gurugram | May 2021 – Dec 2022</div>
                     <ul>
-                        <li>Managed user permissions, Linux server configurations, and system health checks.</li>
-                        <li>Monitored CPU/Memory performance and system metrics with Grafana & Prometheus.</li>
+                        <li>Administered Linux servers, user management, and system-level security configurations.</li>
+                        <li>Installed and configured software packages and application environments.</li>
+                        <li>Monitored server health and application performance using Grafana and Prometheus.</li>
+                        <li>Performed troubleshooting for infrastructure and application-related issues with development teams.</li>
+                        <li>Managed routine operational activities, backups, and server maintenance.</li>
                     </ul>
                 </div>
             </div>
         </div>
 
-        <!-- TAB 3: TECH STACK -->
+        <!-- TAB 3: TECH STACK & K8s -->
         <div id="tab-skills" class="tab-content" style="display: none;">
             <div class="card">
-                <h2>Technical Ecosystem</h2>
+                <h2>Technical Ecosystem & Kubernetes Practice</h2>
                 <div class="grid-2">
-                    <div class="skill-box"><h3>Operating Systems</h3><p>Linux (RHEL, CentOS, Ubuntu)</p></div>
-                    <div class="skill-box"><h3>Cloud & Infra</h3><p>AWS (EC2, VPC, S3, IAM, CloudWatch, Auto Scaling)</p></div>
-                    <div class="skill-box"><h3>Databases & Messaging</h3><p>Oracle, MySQL, Redis, Aerospike, Apache Kafka</p></div>
-                    <div class="skill-box"><h3>Ticketing & Tools</h3><p>ServiceNow, JIRA, Zoho Service Desk Plus (SDP)</p></div>
+                    <div class="skill-box">
+                        <h3>Kubernetes (K8s) & Orchestration</h3>
+                        <p>Hands-on practice & deployment with Pods, Deployments, Services, Ingress Controllers, ConfigMaps, Secrets, Persistent Volumes, and cluster debugging (kubectl logs, describe, exec).</p>
+                    </div>
+                    <div class="skill-box">
+                        <h3>Operating Systems</h3>
+                        <p>Linux (RHEL, CentOS, Ubuntu), kernel namespaces, cgroups, process management, filesystem hierarchy.</p>
+                    </div>
+                    <div class="skill-box">
+                        <h3>Cloud & Infrastructure (AWS)</h3>
+                        <p>EC2, IAM, S3, VPC, Load Balancers, CloudWatch, Auto Scaling, AWS Certified Solutions Architect.</p>
+                    </div>
+                    <div class="skill-box">
+                        <h3>Web & API Gateways</h3>
+                        <p>NGINX Reverse Proxy, Kong API Gateway, REST APIs, custom plugin configurations.</p>
+                    </div>
+                    <div class="skill-box">
+                        <h3>Monitoring & Databases</h3>
+                        <p>ELK Stack, Grafana, Prometheus, Kibana, Elastic APM, Oracle, MySQL, Redis, Aerospike, Apache Kafka.</p>
+                    </div>
+                    <div class="skill-box">
+                        <h3>CI/CD & Automation Tools</h3>
+                        <p>Jenkins, Git, Bitbucket, Ansible, Shell Scripting (Bash), HashiCorp Vault, Zoho SDP, ServiceNow, JIRA.</p>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- TAB 4: AWARDS -->
+        <!-- TAB 4: AWARDS & CERTS -->
         <div id="tab-awards" class="tab-content" style="display: none;">
             <div class="card">
                 <h2>Certifications & Recognitions</h2>
                 <ul>
                     <li style="margin-bottom: 12px;"><strong>AWS Certified Solutions Architect – Associate</strong></li>
-                    <li style="margin-bottom: 12px;"><strong>Certificate of Appreciation (Airtel Payments Bank, July 2026):</strong> Recognized for technical expertise and scripting excellence.</li>
-                    <li style="margin-bottom: 12px;"><strong>Certificate of Appreciation (Airtel Payments Bank):</strong> Delivered on-time upgrade for bank-wide Kong API Gateway custom plugins.</li>
+                    <li style="margin-bottom: 12px;"><strong>Certificate of Appreciation – Airtel Payments Bank (July 2026):</strong> Awarded for demonstrating exceptional technical expertise, scripting excellence, and a strong sense of ownership, consistently delivering results while embracing new challenges with professionalism and reliability.</li>
+                    <li style="margin-bottom: 12px;"><strong>Certificate of Appreciation – Airtel Payments Bank (FY25-26):</strong> For redeveloping bank-wide custom plugins for the new Kong version and delivering the upgrade on time.</li>
+                    <li style="margin-bottom: 12px;"><strong>Certificate of Appreciation – Airtel Payments Bank (FY25-26):</strong> For ownership and commitment toward efficiency and reliability.</li>
                 </ul>
             </div>
         </div>
@@ -260,13 +297,15 @@
                 let response = '';
 
                 if (cmd === 'help') {
-                    response = "Available commands: <span style='color:var(--accent-cyan)'>skills, exp, certs, clear</span>";
+                    response = "Available commands: <span style='color:var(--accent-cyan)'>skills, k8s, exp, certs, clear</span>";
                 } else if (cmd === 'skills') {
                     response = "Linux, AWS, NGINX, Kong API Gateway, Grafana, Prometheus, Kafka, Redis, Shell, Ansible";
+                } else if (cmd === 'k8s') {
+                    response = "Active hands-on practice: Pods, Deployments, Services, Ingress, Volumes, kubectl debugging & cluster ops";
                 } else if (cmd === 'exp') {
-                    response = "5+ Years in SRE & Linux Administration (Airtel Payments Bank Project & Trendy Dice)";
+                    response = "5+ Years SRE at Nehish Software Solutions (Airtel Payments Bank Project) & Trendy Dice";
                 } else if (cmd === 'certs') {
-                    response = "AWS Certified Solutions Architect Associate | Airtel Payments Bank FY26 Certificate";
+                    response = "AWS Certified Solutions Architect Associate | Multiple Airtel Payments Bank Certificates of Appreciation (2026)";
                 } else if (cmd === 'clear') {
                     output.innerHTML = '<div><span class="prompt">sushobhit@sre-bastion:~$</span> <input type="text" class="command-input" id="terminal-input" placeholder="Type a command..."></div>';
                     return;
