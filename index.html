@@ -110,6 +110,19 @@ footer .flinks a:hover{color:var(--acc)}
 .hr .term{margin-top:6px}
 .case{grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr))}
 @media(max-width:980px){.hero{grid-template-columns:1fr;gap:0}.hr{position:static}.hr .term{margin-top:34px}}
+.flip{perspective:1200px;cursor:pointer}
+.flip-inner{display:grid;transition:transform .8s cubic-bezier(.2,.7,.2,1);transform-style:preserve-3d}
+@media(hover:hover){.flip:hover .flip-inner{transform:rotateY(180deg)}}
+.flip.on .flip-inner{transform:rotateY(180deg)}
+.face{grid-area:1/1;backface-visibility:hidden;-webkit-backface-visibility:hidden;border:1px solid var(--line);border-radius:12px;padding:30px 32px;display:flex;flex-direction:column;justify-content:center;gap:14px;min-height:210px}
+.face.f{background:var(--panel);border-left:4px solid var(--acc)}
+.face .hi{color:#8a9ab3;font-size:1.05rem}
+.face.b{border-left:4px solid var(--ok);background:var(--term);transform:rotateY(180deg);color:#d6dde8;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.face blockquote{font-size:clamp(1.3rem,3.2vw,1.8rem);font-weight:650;line-height:1.3}
+.face cite{font-style:normal;color:var(--mute);font-size:.92rem}
+.face.b cite{color:#8a9ab3}
+.flip-hint{margin-top:10px;color:var(--mute);font-size:.85rem}
+@media(prefers-reduced-motion:reduce){.flip-inner{transition:none}}
 @media print{.bg{display:none}}
 @media print{nav,.term,.cta,body::before{display:none}:root{--bg:#fff;--panel:#fff;--ink:#000;--sub:#222;--mute:#444;--line:#bbb;--acc:#034d78}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
@@ -141,7 +154,7 @@ footer .flinks a:hover{color:var(--acc)}
 <h1>Sushobhit Kumar</h1>
 <p class="role">Site Reliability Engineer, Linux Administrator, Production Support</p>
 <p class="typed" aria-label="Hands-on with Linux, AWS, Kong, NGINX, Jenkins, Kafka, Grafana, Prometheus and Ansible">Hands-on with <span class="tw" id="tw" aria-hidden="true"></span><i class="cur" aria-hidden="true"></i></p>
-<p class="lead">Site Reliability Engineer with 5+ years of comprehensive experience maintaining high-availability banking production systems. Specialized in Linux administration, AWS cloud infrastructure, Kubernetes orchestration, and API traffic routing via NGINX and Kong. Expert in Proactive Observability using Grafana, Prometheus, and the ELK stack, coupled with rigorous Root Cause Analysis (RCA) to minimize system downtime. Proven track record in automating operational workflows and managing secure deployments utilizing Bash, Ansible, Jenkins, Kafka, Redis, and HashiCorp Vault at Airtel Payments Bank.</p>
+<p class="lead">Site Reliability Engineer with 5+ years of comprehensive experience maintaining high-availability banking production systems. Specialized in Linux administration, AWS cloud infrastructure, Kubernetes orchestration, and API traffic routing via NGINX and Kong. Expert in proactive observability using Grafana, Prometheus, and the ELK stack, coupled with rigorous Root Cause Analysis (RCA) to minimize system downtime. Proven track record in automating operational workflows and managing secure deployments utilizing Jenkins, Kafka, Redis, and HashiCorp Vault at Airtel Payments Bank.</p>
 <div class="facts">
 <span><b>5+ years</b> in production support and SRE</span>
 <span><b>Based in</b> Gurugram, India</span>
@@ -163,6 +176,15 @@ footer .flinks a:hover{color:var(--acc)}
 <div class="row"><label class="ps" for="in">$</label><input id="in" type="text" autocomplete="off" spellcheck="false" autocapitalize="off" placeholder="type a command, press Enter"></div>
 </div>
 </div>
+</section>
+
+<section id="quote">
+<div class="flip" tabindex="0" role="button" aria-label="Quote card. Hover, tap or press Enter to see my rule for work.">
+<div class="flip-inner">
+<div class="face f"><blockquote id="qq">Hope is not a strategy.</blockquote><cite id="qc">Traditional SRE saying</cite></div>
+<div class="face b"><blockquote>Work is worship. Do it with everything you have, or call it off before you start.</blockquote><p class="hi" lang="hi">काम करो तो हद कर दो, नहीं तो प्रोग्राम पहले ही रद्द कर दो।</p><cite>Sushobhit Kumar</cite></div>
+</div></div>
+<p class="flip-hint">Hover over the card, or tap it on a phone, to flip it.</p>
 </section>
 
 <section id="work">
@@ -226,7 +248,7 @@ footer .flinks a:hover{color:var(--acc)}
 <div class="card"><ul class="awards">
 <li><strong>AWS Certified Solutions Architect - Associate</strong></li>
 <li><strong>Certificate of Appreciation, Airtel Payments Bank (FY26-27, July 2026).</strong> For technical expertise, scripting excellence and ownership, consistently delivering results while taking on new challenges.</li>
-<li><strong>Certificate of Appreciation, Airtel Payments Bank (FY25-26).</strong> For redeveloping bank-wide custom plugins with Development Team for the new Kong version and delivering the upgrade on time.</li>
+<li><strong>Certificate of Appreciation, Airtel Payments Bank (FY25-26).</strong> For redeveloping bank-wide custom plugins for the new Kong version and delivering the upgrade on time.</li>
 <li><strong>Certificate of Appreciation, Airtel Payments Bank (FY25-26).</strong> For ownership and commitment toward efficiency and reliability.</li>
 </ul></div>
 </section>
@@ -235,13 +257,13 @@ footer .flinks a:hover{color:var(--acc)}
 <h2>Education and languages</h2>
 <div class="card"><ul>
 <li><strong>MBA, Finance</strong></li>
-<li>English (Professional Working Proficiency), Hindi (Fluent)</li>
+<li>English (professional working proficiency), Hindi (fluent)</li>
 </ul></div>
 </section>
 
 <section id="contact">
 <h2>Contact</h2>
-<div class="card"><p style="color:var(--sub)">Open to SRE, Production Support and Infrastructure Roles. The fastest way to reach me is call or email.</p>
+<div class="card"><p style="color:var(--sub)">Open to SRE, production support and infrastructure roles. The fastest way to reach me is call/email.</p>
 <div class="cta"><a class="btn p" href="mailto:shobhitchaudhary038@gmail.com?subject=Inquiry%20regarding%20SRE%20Role">shobhitchaudhary038@gmail.com</a>
 <a class="btn" href="https://www.linkedin.com/in/sushobhitkumar-sre" target="_blank" rel="noopener noreferrer">LinkedIn</a>
 <a class="btn" href="tel:+918750754754">+91-8750754754</a>
@@ -328,6 +350,13 @@ nodes.forEach(function(n){var hot=pk.some(function(k,i){var d=Math.abs(((u+i*.5)
 requestAnimationFrame(frame)}
 requestAnimationFrame(frame)})();
 
+document.querySelectorAll('.flip').forEach(function(f){f.addEventListener('click',function(){if(matchMedia('(hover: none)').matches)f.classList.toggle('on')});f.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();f.classList.toggle('on')}})});
+var QS=[['Hope is not a strategy.','Traditional SRE saying'],['Everything fails, all the time.','Werner Vogels'],['You build it, you run it.','Werner Vogels'],['Simplicity is prerequisite for reliability.','Edsger W. Dijkstra'],['A complex system that works is invariably found to have evolved from a simple system that worked.','John Gall'],['Make it work, make it right, make it fast.','Kent Beck']];
+var qq=document.getElementById('qq'),qc=document.getElementById('qc');
+if(qq&&qc){var last=-1;try{last=parseInt(localStorage.getItem('q'),10)}catch(e){}
+var qi=Math.floor(Math.random()*QS.length);if(qi===last)qi=(qi+1)%QS.length;
+try{localStorage.setItem('q',qi)}catch(e){}
+qq.textContent=QS[qi][0];qc.textContent=QS[qi][1]}
 var root=document.documentElement;
 function toggle(){
 var dark=root.getAttribute('data-theme')?root.getAttribute('data-theme')==='dark':!matchMedia('(prefers-color-scheme: light)').matches;
