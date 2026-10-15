@@ -1,325 +1,239 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sushobhit Kumar | Site Reliability Engineer & Infrastructure Portfolio</title>
-
-    <!-- Social Media / Open Graph Meta Tags -->
-    <meta property="og:title" content="Sushobhit Kumar — Site Reliability Engineer Portfolio">
-    <meta property="og:description" content="5+ Years SRE & Production Support in Banking & Linux Systems. AWS, Kong API Gateway, Kubernetes, and Observability.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://shobhitchaudhary038-lab.github.io/my-website/">
-
-    <style>
-        :root {
-            --bg-dark: #070a12;
-            --card-bg: rgba(14, 20, 32, 0.9);
-            --border-color: #1e293b;
-            --accent-cyan: #38bdf8;
-            --accent-green: #34d399;
-            --accent-blue: #60a5fa;
-            --text-main: #f1f5f9;
-            --text-muted: #94a3b8;
-            --subtext: #cbd5e1;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
-        body { 
-            background-color: var(--bg-dark); 
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(56, 189, 248, 0.06) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(52, 211, 153, 0.05) 0%, transparent 40%);
-            color: var(--text-main); 
-            line-height: 1.65; 
-            padding: 24px 12px; 
-        }
-
-        .container { max-width: 980px; margin: 20px auto; }
-
-        /* Header Card */
-        .header-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 36px;
-            box-shadow: 0 10px 35px rgba(0,0,0,0.5);
-            margin-bottom: 24px;
-            position: relative;
-        }
-
-        .header-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; height: 3px;
-            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-blue), var(--accent-green));
-            border-top-left-radius: 12px;
-            border-top-right-radius: 12px;
-        }
-
-        .profile-title h1 { font-size: 2.3rem; font-weight: 700; color: #ffffff; letter-spacing: -0.5px; }
-        .profile-title p { color: var(--accent-cyan); font-weight: 600; font-size: 1.05rem; margin-top: 4px; }
-        
-        .status-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(52, 211, 153, 0.08);
-            color: var(--accent-green);
-            border: 1px solid rgba(52, 211, 153, 0.25);
-            padding: 5px 14px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            margin-top: 14px;
-            font-weight: 500;
-        }
-        .status-dot { width: 7px; height: 7px; background: var(--accent-green); border-radius: 50%; }
-
-        .contact-grid { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
-        .btn {
-            text-decoration: none;
-            padding: 9px 18px;
-            border-radius: 6px;
-            font-size: 0.88rem;
-            font-weight: 600;
-            transition: all 0.2s ease;
-            display: inline-flex;
-            align-items: center;
-        }
-        .btn-primary { background: var(--accent-cyan); color: #070a12; }
-        .btn-secondary { background: rgba(255,255,255,0.04); color: var(--text-main); border: 1px solid var(--border-color); }
-        .btn:hover { opacity: 0.9; transform: translateY(-1px); }
-
-        /* Terminal Component */
-        .terminal {
-            background: #030712;
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            overflow: hidden;
-            margin-bottom: 24px;
-            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.5);
-        }
-        .terminal-bar { background: #111827; padding: 10px 16px; display: flex; align-items: center; border-bottom: 1px solid var(--border-color); }
-        .dots { display: flex; gap: 6px; }
-        .dot { width: 11px; height: 11px; border-radius: 50%; }
-        .dot-red { background: #f87171; } .dot-yellow { background: #fbbf24; } .dot-green { background: #34d399; }
-        .terminal-title { margin-left: auto; color: var(--text-muted); font-size: 0.78rem; }
-        .terminal-body { padding: 20px; color: #d1d5db; font-size: 0.88rem; max-height: 240px; overflow-y: auto; }
-        .prompt { color: var(--accent-green); }
-        .command-input { background: transparent; border: none; color: var(--accent-cyan); font-size: 0.88rem; font-family: inherit; width: 60%; outline: none; }
-
-        /* Section Navigation Tabs */
-        .nav-tabs { display: flex; gap: 8px; margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 12px; overflow-x: auto; }
-        .tab-btn { background: transparent; border: none; color: var(--text-muted); padding: 8px 16px; font-size: 0.92rem; font-weight: 600; cursor: pointer; border-radius: 6px; transition: 0.2s; }
-        .tab-btn.active { background: rgba(56, 189, 248, 0.1); color: var(--accent-cyan); border: 1px solid rgba(56, 189, 248, 0.3); }
-
-        /* Tab Content Cards */
-        .card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 10px; padding: 28px; margin-bottom: 20px; }
-        .card h2 { color: #ffffff; font-size: 1.25rem; font-weight: 600; margin-bottom: 16px; letter-spacing: -0.3px; }
-
-        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
-        .skill-box { background: rgba(7, 10, 18, 0.7); border: 1px solid var(--border-color); padding: 18px; border-radius: 8px; }
-        .skill-box h3 { color: var(--accent-cyan); font-size: 0.92rem; font-weight: 600; margin-bottom: 6px; }
-        .skill-box p { color: var(--subtext); font-size: 0.88rem; }
-
-        .timeline-item { border-left: 2px solid var(--accent-blue); padding-left: 20px; margin-left: 4px; position: relative; margin-bottom: 22px; }
-        .timeline-item::before { content: ''; position: absolute; left: -6px; top: 2px; width: 10px; height: 10px; background: var(--accent-blue); border-radius: 50%; }
-        .role { font-weight: 600; color: #ffffff; font-size: 1.02rem; }
-        .company { color: var(--accent-cyan); font-size: 0.88rem; margin-bottom: 8px; }
-        ul { padding-left: 18px; color: var(--subtext); font-size: 0.9rem; }
-        li { margin-bottom: 6px; }
-
-        footer { text-align: center; color: var(--text-muted); font-size: 0.82rem; padding: 24px 0; border-top: 1px solid var(--border-color); margin-top: 32px; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sushobhit Kumar | Site Reliability Engineer</title>
+<meta name="description" content="Site Reliability Engineer with 5+ years in banking production support: Linux, AWS, Kong API Gateway, Kubernetes, observability.">
+<meta property="og:title" content="Sushobhit Kumar - Site Reliability Engineer">
+<meta property="og:description" content="5+ years of SRE and production support in banking. AWS, Kong API Gateway, Kubernetes, observability.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://shobhitchaudhary038-lab.github.io/my-website/">
+<style>
+:root{--bg:#0a0f1a;--panel:#111827;--line:#233047;--ink:#eef2f7;--mute:#9aa8bd;--sub:#cbd5e1;--acc:#4cc2ff;--ok:#3ddc97;--term:#05080f;--btn-ink:#06101c;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#f5f7fb;--panel:#fff;--line:#d9e0ec;--ink:#0f172a;--mute:#53627a;--sub:#334155;--acc:#0369a1;--ok:#047857;--term:#0b1220;--btn-ink:#fff}}
+:root[data-theme="light"]{--bg:#f5f7fb;--panel:#fff;--line:#d9e0ec;--ink:#0f172a;--mute:#53627a;--sub:#334155;--acc:#0369a1;--ok:#047857;--term:#0b1220;--btn-ink:#fff}
+:root[data-theme="dark"]{--bg:#0a0f1a;--panel:#111827;--line:#233047;--ink:#eef2f7;--mute:#9aa8bd;--sub:#cbd5e1;--acc:#4cc2ff;--ok:#3ddc97;--term:#05080f;--btn-ink:#06101c}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(64px + env(safe-area-inset-top,0px))}
+body{background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--acc)}
+:focus-visible{outline:2px solid var(--acc);outline-offset:3px;border-radius:4px}
+.skip{position:absolute;left:-999px}.skip:focus{left:12px;top:12px;background:var(--acc);color:var(--btn-ink);padding:8px 12px;border-radius:6px;z-index:50}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:30}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+nav .in{max-width:960px;margin:auto;display:flex;gap:4px;align-items:center;padding:10px 16px;overflow-x:auto}
+nav a{color:var(--mute);text-decoration:none;font-size:.9rem;font-weight:600;padding:6px 12px;border-radius:6px;white-space:nowrap}
+nav a:hover,nav a.on{color:var(--ink);background:var(--panel)}
+nav button{margin-left:auto;background:none;border:1px solid var(--line);color:var(--mute);border-radius:6px;padding:5px 10px;font-size:.82rem;cursor:pointer}
+main{max-width:960px;margin:auto;padding:0 16px 40px}
+section{padding:44px 0 8px}
+h2{font-size:1.35rem;letter-spacing:-.01em;margin-bottom:18px}
+.hero{padding-top:56px}
+.hero h1{font-size:clamp(2rem,5.5vw,3.2rem);line-height:1.1;letter-spacing:-.03em}
+.hero .role{color:var(--acc);font-weight:600;margin-top:10px}
+.hero p.lead{color:var(--sub);max-width:62ch;margin-top:18px;font-size:1.05rem}
+.facts{display:flex;flex-wrap:wrap;gap:10px 28px;margin-top:26px;color:var(--mute);font-size:.92rem}
+.facts b{color:var(--ink);font-weight:650}
+.cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.btn{text-decoration:none;font-weight:650;font-size:.92rem;padding:10px 18px;border-radius:8px;border:1px solid var(--line);color:var(--ink);background:var(--panel)}
+.btn.p{background:var(--acc);color:var(--btn-ink);border-color:var(--acc)}
+.term{margin-top:34px;background:var(--term);border:1px solid var(--line);border-radius:10px;overflow:hidden;font:.88rem/1.6 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#d6dde8}
+.tbar{display:flex;justify-content:space-between;padding:9px 14px;border-bottom:1px solid #1d2a40;color:#8a9ab3;font-size:.78rem}
+#out{padding:14px 16px 4px;max-height:300px;overflow-y:auto;white-space:pre-wrap;word-break:break-word}
+.row{display:flex;gap:8px;padding:0 16px 14px}
+.ps{color:#3ddc97;white-space:nowrap}
+#in{flex:1;min-width:0;background:none;border:0;color:#7fd4ff;font:inherit;outline:none}
+.hint{color:#8a9ab3}.hint button{background:none;border:0;color:#7fd4ff;font:inherit;cursor:pointer;text-decoration:underline}
+.case{display:grid;gap:14px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:22px}
+.card h3{font-size:1.05rem;margin-bottom:10px}
+.pa{display:grid;grid-template-columns:90px 1fr;gap:6px 14px;color:var(--sub);font-size:.94rem}
+.pa dt{color:var(--mute);font-weight:600}
+@media(max-width:560px){.pa{grid-template-columns:1fr}.pa dt{margin-top:6px}}
+.tl{border-left:2px solid var(--line);padding-left:20px;display:grid;gap:30px;margin-left:4px}
+.job{position:relative}.job::before{content:"";position:absolute;left:-27px;top:8px;width:10px;height:10px;border-radius:50%;background:var(--acc)}
+.job h3{font-size:1.05rem}.job .co{color:var(--acc);font-size:.92rem}.job .dt{color:var(--mute);font-size:.85rem;margin-bottom:8px}
+ul{padding-left:18px;color:var(--sub);font-size:.94rem}li{margin-bottom:6px}
+.stack{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.stack h3{font-size:.95rem;margin-bottom:6px}
+.stack p{color:var(--sub);font-size:.92rem}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.chips span{font-size:.78rem;color:var(--sub);border:1px solid var(--line);border-radius:999px;padding:2px 10px}
+.awards li{margin-bottom:12px}.awards strong{color:var(--ink)}
+footer{max-width:960px;margin:0 auto;padding:22px 16px;border-top:1px solid var(--line);color:var(--mute);font-size:.85rem;display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between}
+@media print{nav,.term,.cta,body::before{display:none}:root{--bg:#fff;--panel:#fff;--ink:#000;--sub:#222;--mute:#444;--line:#bbb;--acc:#034d78}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
+<nav aria-label="Sections"><div class="in">
+<a href="#about">About</a><a href="#work">Selected work</a><a href="#experience">Experience</a><a href="#stack">Stack</a><a href="#recognition">Recognition</a><a href="#contact">Contact</a>
+<button id="theme" type="button" aria-label="Toggle color theme">Theme</button>
+</div></nav>
 
-    <div class="container">
-        <!-- Header Profile Card -->
-        <div class="header-card">
-            <div class="profile-title">
-                <h1>Sushobhit Kumar</h1>
-                <p>Site Reliability Engineer | Linux Administrator | Production Support Engineer</p>
-                <div class="status-badge">
-                    <span class="status-dot"></span>
-                    Managing Banking Production Systems, AWS & Kubernetes Infrastructure
-                </div>
-            </div>
+<main id="main">
+<section class="hero" id="about">
+<h1>Sushobhit Kumar</h1>
+<p class="role">Site Reliability Engineer, Linux Administrator, Production Support</p>
+<p class="lead">I keep banking production systems running: Linux and AWS infrastructure, Kong and NGINX traffic layers, and the monitoring and automation around them. 5+ years of L2/L3 support, incident response and root cause analysis at Airtel Payments Bank.</p>
+<div class="facts">
+<span><b>5+ years</b> in production support and SRE</span>
+<span><b>Based in</b> Gurugram, India</span>
+<span><b>Current:</b> Nehish Software Solutions, Airtel Payments Bank project</span>
+<span><b>Certified:</b> AWS Solutions Architect Associate</span>
+</div>
+<div class="chips"><span>Incident management</span><span>Root cause analysis</span><span>Production deployment</span><span>Change management</span><span>Release support</span><span>Monitoring and alerting</span><span>API gateway management</span><span>Troubleshooting</span></div>
+<div class="cta">
+<a class="btn p" href="mailto:shobhitchaudhary038@gmail.com?subject=Inquiry%20regarding%20SRE%20Role">Email me</a>
+<a class="btn" href="https://www.linkedin.com/in/sushobhit-kumar-sre" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+<a class="btn" href="tel:+918750754754">+91-8750754754</a>
+<a class="btn" href="Sushobhit_Kumar_CV_July_26.pdf" download>Download CV</a>
+</div>
 
-            <div class="contact-grid">
-                <a href="mailto:shobhitchaudhary038@gmail.com?subject=Inquiry%20regarding%20SRE%20Role" class="btn btn-primary">Email Me</a>
-                <a href="https://www.linkedin.com/in/sushobhit-kumar-sre" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">LinkedIn Profile</a>
-                <a href="tel:+918750754754" class="btn btn-secondary">+91-8750754754</a>
-            </div>
-        </div>
+<div class="term" role="region" aria-label="Interactive terminal">
+<div class="tbar"><span>sushobhit@sre-bastion: ~</span><span>try: help</span></div>
+<div id="out" aria-live="polite"></div>
+<div class="row"><label class="ps" for="in">$</label><input id="in" type="text" autocomplete="off" spellcheck="false" autocapitalize="off" placeholder="type a command, press Enter"></div>
+</div>
+</section>
 
-        <!-- Interactive Terminal Simulator -->
-        <div class="terminal">
-            <div class="terminal-bar">
-                <div class="dots">
-                    <span class="dot dot-red"></span>
-                    <span class="dot dot-yellow"></span>
-                    <span class="dot dot-green"></span>
-                </div>
-                <span class="terminal-title">bash — sushobhit@sre-bastion:~</span>
-            </div>
-            <div class="terminal-body" id="terminal-output">
-                <div>Welcome to Sushobhit's SRE Terminal. Type <span style="color:var(--accent-cyan)">'help'</span>, <span style="color:var(--accent-cyan)">'skills'</span>, <span style="color:var(--accent-cyan)">'k8s'</span> or <span style="color:var(--accent-cyan)">'exp'</span> to run commands.</div>
-                <br>
-                <div><span class="prompt">sushobhit@sre-bastion:~$</span> <input type="text" class="command-input" id="terminal-input" placeholder="Type a command..." autofocus></div>
-            </div>
-        </div>
+<section id="work">
+<h2>Selected work</h2>
+<div class="case">
+<article class="card"><h3>Production Connectivity Framework</h3>
+<dl class="pa"><dt>Problem</dt><dd>Verifying connectivity between many source and destination servers before and after changes was manual and slow.</dd>
+<dt>Built</dt><dd>A Jenkins-driven framework that validates end-to-end production connectivity across multiple servers automatically.</dd>
+<dt>Stack</dt><dd>Jenkins, Shell, Linux</dd></dl></article>
+<article class="card"><h3>Kong upgrade: bank-wide custom plugins</h3>
+<dl class="pa"><dt>Problem</dt><dd>A new Kong version required every custom plugin used across the bank to be redeveloped.</dd>
+<dt>Built</dt><dd>Redeveloped the plugins and delivered the upgrade on time. Recognized with a Certificate of Appreciation (FY25-26).</dd>
+<dt>Stack</dt><dd>Kong API Gateway, NGINX, Linux</dd></dl></article>
+</div>
+</section>
 
-        <!-- Section Navigation -->
-        <div class="nav-tabs">
-            <button class="tab-btn active" onclick="switchTab('overview')">Overview</button>
-            <button class="tab-btn" onclick="switchTab('experience')">Experience</button>
-            <button class="tab-btn" onclick="switchTab('skills')">Tech Stack & K8s</button>
-            <button class="tab-btn" onclick="switchTab('awards')">Awards & Certs</button>
-        </div>
+<section id="experience">
+<h2>Experience</h2>
+<div class="tl">
+<div class="job"><h3>Site Reliability Engineer</h3><div class="co">Nehish Software Solutions, Airtel Payments Bank project</div><div class="dt">Dec 2022 to present</div>
+<ul>
+<li>L2/L3 production support for critical banking applications on Linux and AWS.</li>
+<li>Built the Production Connectivity Framework for automated connectivity validation through Jenkins.</li>
+<li>Manage and troubleshoot NGINX reverse proxy and Kong API Gateway, including bank-wide custom plugin redevelopment.</li>
+<li>Monitor applications with Grafana, Kibana, ELK, Prometheus and Elastic APM.</li>
+<li>Incident management and ticketing in Zoho Service Desk Plus, ServiceNow and JIRA.</li>
+<li>Support high-availability microservices integrated with Oracle, Redis, Aerospike and Kafka.</li>
+<li>Automate routine operations with Shell and Ansible; support Jenkins CI/CD releases and change implementation.</li>
+<li>Manage secrets with HashiCorp Vault.</li>
+<li>Coordinate with development, network, middleware, DBA and infrastructure teams during incidents and releases.</li>
+<li>Run health checks, server validation, process monitoring and preventive maintenance.</li>
+<li>Support production deployment, rollback and post-deployment validation.</li>
+</ul></div>
+<div class="job"><h3>Linux Administrator</h3><div class="co">Trendy Dice, Gurugram</div><div class="dt">May 2021 to Dec 2022</div>
+<ul>
+<li>Administered Linux servers, users and system-level configuration.</li>
+<li>Installed and configured packages and application environments.</li>
+<li>Monitored server health with Grafana and Prometheus.</li>
+<li>Troubleshot infrastructure and application issues with development teams; handled backups and maintenance.</li>
+</ul></div>
+</div>
+</section>
 
-        <!-- TAB 1: OVERVIEW -->
-        <div id="tab-overview" class="tab-content">
-            <div class="card">
-                <h2>Professional Summary</h2>
-                <p style="color: var(--subtext); font-size: 0.95rem;">Site Reliability Engineer with 5+ years of comprehensive experience supporting and optimizing critical production systems in high-stakes banking environments. Skilled in Linux administration, AWS infrastructure, Kubernetes orchestration, incident management, root cause analysis (RCA), production deployment, change management, monitoring, automation, and CI/CD support.</p>
-            </div>
-            <div class="card">
-                <h2>Core Competencies</h2>
-                <div class="grid-2">
-                    <div class="skill-box"><h3>Incident Management & RCA</h3><p>L2/L3 Incident Management, Root Cause Analysis, 24/7 Production Support, Ticketing via ServiceNow & Zoho SDP.</p></div>
-                    <div class="skill-box"><h3>API Gateways & Routing</h3><p>Kong API Gateway custom plugin upgrades, NGINX Reverse Proxy, traffic routing management.</p></div>
-                    <div class="skill-box"><h3>Monitoring & Observability</h3><p>Grafana, Prometheus, ELK Stack, Kibana, Elastic APM, and Alerting.</p></div>
-                    <div class="skill-box"><h3>Automation & CI/CD</h3><p>Shell Scripting (Bash), Ansible playbooks, Jenkins pipelines, HashiCorp Vault secret management.</p></div>
-                </div>
-            </div>
-        </div>
+<section id="stack">
+<h2>Stack</h2>
+<div class="stack">
+<div class="card"><h3>Linux and operating systems</h3><p>RHEL, CentOS, Ubuntu. Process management, filesystem, namespaces and cgroups.</p></div>
+<div class="card"><h3>AWS</h3><p>EC2, IAM, S3, VPC, load balancers, CloudWatch, Auto Scaling.</p></div>
+<div class="card"><h3>Gateways and proxies</h3><p>Kong API Gateway with custom plugins, NGINX reverse proxy, REST APIs.</p></div>
+<div class="card"><h3>Kubernetes</h3><p>Learning and hands-on practice with Pods, Deployments, Services, Ingress, ConfigMaps, Secrets, volumes, and debugging with kubectl.</p><div class="chips"><span>learning</span></div></div>
+<div class="card"><h3>Observability</h3><p>Grafana, Prometheus, ELK, Kibana, Elastic APM, alerting.</p></div>
+<div class="card"><h3>Data and messaging</h3><p>Oracle, MySQL, Redis, Aerospike, Apache Kafka, Confluent Kafka.</p></div>
+<div class="card"><h3>Automation and delivery</h3><p>Bash, Python (basic), Ansible, Jenkins, Git, Bitbucket, HashiCorp Vault.</p></div>
+<div class="card"><h3>Ticketing and collaboration</h3><p>Zoho ServiceDesk Plus, ServiceNow, JIRA, Confluence, Microsoft Teams.</p></div>
+<div class="card"><h3>Environment I have managed</h3><p>RHEL and CentOS servers, AWS, NGINX, Kong, Spring Boot microservices, Oracle, Redis, Aerospike, Kafka, ELK, Grafana, Prometheus, Elastic APM, Jenkins, Bitbucket, Vault.</p></div>
+</div>
+</section>
 
-        <!-- TAB 2: EXPERIENCE -->
-        <div id="tab-experience" class="tab-content" style="display: none;">
-            <div class="card">
-                <h2>Professional Experience</h2>
-                <div class="timeline-item">
-                    <div class="role">Site Reliability Engineer</div>
-                    <div class="company">Nehish Software Solutions (Airtel Payments Bank Project) | Dec 2022 – Present</div>
-                    <ul>
-                        <li>Provide L2/L3 production support for critical banking applications running on Linux and AWS infrastructure.</li>
-                        <li>Developed and implemented a Production Connectivity Framework for automated end-to-end production connectivity validation across multiple source and destination servers via Jenkins.</li>
-                        <li>Monitor application performance using Grafana, Kibana, ELK Stack, Prometheus, and Elastic APM.</li>
-                        <li>Perform incident management, ticketing, and troubleshooting using Zoho Service Desk Plus (SDP), ServiceNow, and JIRA.</li>
-                        <li>Manage and troubleshoot NGINX reverse proxy and Kong API Gateway for API traffic routing, including bank-wide custom plugin redevelopments.</li>
-                        <li>Support high-availability microservices integrated with Oracle, Redis, Aerospike, and Kafka.</li>
-                        <li>Develop automation scripts using Shell scripting and Ansible for routine and operational activities.</li>
-                        <li>Support Jenkins-based CI/CD deployments, release activities, and change implementation.</li>
-                        <li>Integrate and manage HashiCorp Vault for secure secret management.</li>
-                    </ul>
-                </div>
-                <div class="timeline-item">
-                    <div class="role">Linux Administrator</div>
-                    <div class="company">Trendy Dice, Gurugram | May 2021 – Dec 2022</div>
-                    <ul>
-                        <li>Administered Linux servers, user management, and system-level security configurations.</li>
-                        <li>Installed and configured software packages and application environments.</li>
-                        <li>Monitored server health and application performance using Grafana and Prometheus.</li>
-                        <li>Performed troubleshooting for infrastructure and application-related issues with development teams.</li>
-                        <li>Managed routine operational activities, backups, and server maintenance.</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+<section id="recognition">
+<h2>Certification and recognition</h2>
+<div class="card"><ul class="awards">
+<li><strong>AWS Certified Solutions Architect - Associate</strong></li>
+<li><strong>Certificate of Appreciation, Airtel Payments Bank (FY26-27, July 2026).</strong> For technical expertise, scripting excellence and ownership, consistently delivering results while taking on new challenges.</li>
+<li><strong>Certificate of Appreciation, Airtel Payments Bank (FY25-26).</strong> For redeveloping bank-wide custom plugins for the new Kong version and delivering the upgrade on time.</li>
+<li><strong>Certificate of Appreciation, Airtel Payments Bank (FY25-26).</strong> For ownership and commitment toward efficiency and reliability.</li>
+</ul></div>
+</section>
 
-        <!-- TAB 3: TECH STACK & K8s -->
-        <div id="tab-skills" class="tab-content" style="display: none;">
-            <div class="card">
-                <h2>Technical Ecosystem & Kubernetes Practice</h2>
-                <div class="grid-2">
-                    <div class="skill-box">
-                        <h3>Kubernetes (K8s) & Orchestration</h3>
-                        <p>Hands-on practice & deployment with Pods, Deployments, Services, Ingress Controllers, ConfigMaps, Secrets, Persistent Volumes, and cluster debugging (kubectl logs, describe, exec).</p>
-                    </div>
-                    <div class="skill-box">
-                        <h3>Operating Systems</h3>
-                        <p>Linux (RHEL, CentOS, Ubuntu), kernel namespaces, cgroups, process management, filesystem hierarchy.</p>
-                    </div>
-                    <div class="skill-box">
-                        <h3>Cloud & Infrastructure (AWS)</h3>
-                        <p>EC2, IAM, S3, VPC, Load Balancers, CloudWatch, Auto Scaling, AWS Certified Solutions Architect.</p>
-                    </div>
-                    <div class="skill-box">
-                        <h3>Web & API Gateways</h3>
-                        <p>NGINX Reverse Proxy, Kong API Gateway, REST APIs, custom plugin configurations.</p>
-                    </div>
-                    <div class="skill-box">
-                        <h3>Monitoring & Databases</h3>
-                        <p>ELK Stack, Grafana, Prometheus, Kibana, Elastic APM, Oracle, MySQL, Redis, Aerospike, Apache Kafka.</p>
-                    </div>
-                    <div class="skill-box">
-                        <h3>CI/CD & Automation Tools</h3>
-                        <p>Jenkins, Git, Bitbucket, Ansible, Shell Scripting (Bash), HashiCorp Vault, Zoho SDP, ServiceNow, JIRA.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+<section id="background">
+<h2>Education and languages</h2>
+<div class="card"><ul>
+<li><strong>MBA, Finance</strong></li>
+<li>English (professional working proficiency), Hindi (fluent)</li>
+</ul></div>
+</section>
 
-        <!-- TAB 4: AWARDS & CERTS -->
-        <div id="tab-awards" class="tab-content" style="display: none;">
-            <div class="card">
-                <h2>Certifications & Recognitions</h2>
-                <ul>
-                    <li style="margin-bottom: 12px;"><strong>AWS Certified Solutions Architect – Associate</strong></li>
-                    <li style="margin-bottom: 12px;"><strong>Certificate of Appreciation – Airtel Payments Bank (July 2026):</strong> Awarded for demonstrating exceptional technical expertise, scripting excellence, and a strong sense of ownership, consistently delivering results while embracing new challenges with professionalism and reliability.</li>
-                    <li style="margin-bottom: 12px;"><strong>Certificate of Appreciation – Airtel Payments Bank (FY25-26):</strong> For redeveloping bank-wide custom plugins for the new Kong version and delivering the upgrade on time.</li>
-                    <li style="margin-bottom: 12px;"><strong>Certificate of Appreciation – Airtel Payments Bank (FY25-26):</strong> For ownership and commitment toward efficiency and reliability.</li>
-                </ul>
-            </div>
-        </div>
+<section id="contact">
+<h2>Contact</h2>
+<div class="card"><p style="color:var(--sub)">Open to SRE, production support and infrastructure roles. The fastest way to reach me is email.</p>
+<div class="cta"><a class="btn p" href="mailto:shobhitchaudhary038@gmail.com?subject=Inquiry%20regarding%20SRE%20Role">shobhitchaudhary038@gmail.com</a>
+<a class="btn" href="https://www.linkedin.com/in/sushobhit-kumar-sre" target="_blank" rel="noopener noreferrer">LinkedIn</a></div></div>
+</section>
+</main>
+<footer><span>2026 Sushobhit Kumar</span><span>Site Reliability Engineering portfolio</span></footer>
 
-        <footer>
-            <p>© 2026 Sushobhit Kumar | Site Reliability Engineering & Infrastructure Portfolio</p>
-        </footer>
-    </div>
+<script>
+(function(){
+var out=document.getElementById('out'),inp=document.getElementById('in'),hist=[],hi=0;
+var C={
+help:'Commands: whoami, skills, k8s, exp, projects, certs, contact, theme, history, clear',
+whoami:'Sushobhit Kumar - SRE, Linux admin, production support. Banking systems, 5+ years.',
+skills:'Linux, AWS, NGINX, Kong, Grafana, Prometheus, ELK, Kafka, Redis, Aerospike, Oracle, Jenkins, Ansible, Bash, Vault',
+k8s:'Learning and practice: Pods, Deployments, Services, Ingress, ConfigMaps, Secrets, volumes. Debugging with kubectl logs, describe, exec.',
+exp:'Dec 2022-present  SRE, Nehish Software Solutions (Airtel Payments Bank)\nMay 2021-Dec 2022  Linux Administrator, Trendy Dice',
+projects:'1. Production Connectivity Framework (Jenkins)\n2. Kong bank-wide custom plugin upgrade',
+certs:'AWS Certified Solutions Architect Associate\n3 Certificates of Appreciation, Airtel Payments Bank (FY25-26, FY26-27)',
+contact:'shobhitchaudhary038@gmail.com | linkedin.com/in/sushobhit-kumar-sre'
+};
+function add(t,cls){var d=document.createElement('div');if(cls)d.className=cls;d.textContent=t;out.appendChild(d);out.scrollTop=out.scrollHeight}
+function run(raw){
+var c=raw.trim().toLowerCase();
+add('$ '+raw,'hint');
+if(!c)return;
+hist.push(c);hi=hist.length;
+if(c==='clear'){out.textContent='';return}
+if(c==='history'){add(hist.map(function(h,i){return (i+1)+'  '+h}).join('\n'));return}
+if(c==='theme'){toggle();add('theme switched');return}
+if(C[c]){add(C[c]);return}
+add('command not found: '+c+'. Type help.');
+}
+inp.addEventListener('keydown',function(e){
+if(e.key==='Enter'){run(inp.value);inp.value=''}
+else if(e.key==='ArrowUp'){if(hi>0){hi--;inp.value=hist[hi]||'';e.preventDefault()}}
+else if(e.key==='ArrowDown'){if(hi<hist.length){hi++;inp.value=hist[hi]||'';e.preventDefault()}}
+else if(e.key==='Tab'){var v=inp.value.toLowerCase();if(v){var m=Object.keys(C).concat(['clear','history','theme']).filter(function(k){return k.indexOf(v)===0});if(m.length===1){inp.value=m[0]}e.preventDefault()}}
+});
+add('Welcome. Type help to list commands.');
+var h=document.createElement('div');h.className='hint';h.innerHTML='Quick run: <button type="button" data-c="projects">projects</button> <button type="button" data-c="skills">skills</button> <button type="button" data-c="certs">certs</button>';
+out.appendChild(h);
+h.addEventListener('click',function(e){var c=e.target.getAttribute&&e.target.getAttribute('data-c');if(c)run(c)});
 
-    <script>
-        function switchTab(tabName) {
-            document.querySelectorAll('.tab-content').forEach(el => el.style.display = 'none');
-            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
-            document.getElementById('tab-' + tabName).style.display = 'block';
-            event.target.classList.add('active');
-        }
+var root=document.documentElement;
+function toggle(){
+var dark=root.getAttribute('data-theme')?root.getAttribute('data-theme')==='dark':!matchMedia('(prefers-color-scheme: light)').matches;
+var n=dark?'light':'dark';root.setAttribute('data-theme',n);
+try{localStorage.setItem('theme',n)}catch(e){}
+}
+try{var s=localStorage.getItem('theme');if(s)root.setAttribute('data-theme',s)}catch(e){}
+document.getElementById('theme').addEventListener('click',toggle);
 
-        const input = document.getElementById('terminal-input');
-        const output = document.getElementById('terminal-output');
-
-        input.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                const cmd = input.value.trim().toLowerCase();
-                let response = '';
-
-                if (cmd === 'help') {
-                    response = "Available commands: <span style='color:var(--accent-cyan)'>skills, k8s, exp, certs, clear</span>";
-                } else if (cmd === 'skills') {
-                    response = "Linux, AWS, NGINX, Kong API Gateway, Grafana, Prometheus, Kafka, Redis, Shell, Ansible";
-                } else if (cmd === 'k8s') {
-                    response = "Active hands-on practice: Pods, Deployments, Services, Ingress, Volumes, kubectl debugging & cluster ops";
-                } else if (cmd === 'exp') {
-                    response = "5+ Years SRE at Nehish Software Solutions (Airtel Payments Bank Project) & Trendy Dice";
-                } else if (cmd === 'certs') {
-                    response = "AWS Certified Solutions Architect Associate | Multiple Airtel Payments Bank Certificates of Appreciation (2026)";
-                } else if (cmd === 'clear') {
-                    output.innerHTML = '<div><span class="prompt">sushobhit@sre-bastion:~$</span> <input type="text" class="command-input" id="terminal-input" placeholder="Type a command..."></div>';
-                    return;
-                } else {
-                    response = "Command not found: " + cmd + ". Type 'help' for options.";
-                }
-
-                const line = document.createElement('div');
-                line.innerHTML = `<span class="prompt">sushobhit@sre-bastion:~$</span> ${input.value}<br><span style="color:#e2e8f0">${response}</span><br><br>`;
-                output.insertBefore(line, input.parentElement);
-                input.value = '';
-                output.scrollTop = output.scrollHeight;
-            }
-        });
-    </script>
+var links=[].slice.call(document.querySelectorAll('nav a'));
+if('IntersectionObserver' in window){
+var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){links.forEach(function(a){a.classList.toggle('on',a.getAttribute('href')==='#'+en.target.id)})}})},{rootMargin:'-40% 0px -55% 0px'});
+document.querySelectorAll('section[id]').forEach(function(s){io.observe(s)});
+}
+})();
+</script>
 </body>
 </html>
