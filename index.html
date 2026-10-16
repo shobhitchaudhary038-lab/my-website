@@ -123,10 +123,17 @@ footer .flinks a:hover{color:var(--acc)}
 .face.b cite{color:#8a9ab3}
 .flip-hint{margin-top:10px;color:var(--mute);font-size:.85rem}
 @media(prefers-reduced-motion:reduce){.flip-inner{transition:none}}
+.hi-form{display:grid;gap:12px;margin-top:26px;padding-top:22px;border-top:1px solid var(--line);max-width:520px}
+.hi-form h3{font-size:1.05rem}
+.hi-form label{display:grid;gap:6px;font-size:.88rem;font-weight:600;color:var(--sub)}
+.hi-form input,.hi-form textarea{font:inherit;font-weight:400;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;width:100%}
+.hi-form button{justify-self:start;cursor:pointer;font-family:inherit}
+.hi-form .note,#sayhi-st{font-size:.82rem;color:var(--mute)}
 @media print{.bg{display:none}}
 @media print{nav,.term,.cta,body::before{display:none}:root{--bg:#fff;--panel:#fff;--ink:#000;--sub:#222;--mute:#444;--line:#bbb;--acc:#034d78}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
+<script data-goatcounter="https://sushobhit.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
 <div class='bg' aria-hidden='true'><div class='glow'></div>
@@ -163,10 +170,10 @@ footer .flinks a:hover{color:var(--acc)}
 </div>
 <div class="chips"><span>Incident management</span><span>Root cause analysis</span><span>Production deployment</span><span>Change management</span><span>Release support</span><span>Monitoring and alerting</span><span>API gateway management</span><span>Troubleshooting</span></div>
 <div class="cta">
-<a class="btn p" href="mailto:shobhitchaudhary038@gmail.com?subject=Inquiry%20regarding%20SRE%20Role">Email me</a>
-<a class="btn" href="https://www.linkedin.com/in/sushobhitkumar-sre" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-<a class="btn" href="tel:+918750754754">+91-8750754754</a>
-<a class="btn" href="Sushobhit_Kumar_CV.pdf" download>Download CV</a>
+<a class="btn p" href="mailto:shobhitchaudhary038@gmail.com?subject=Inquiry%20regarding%20SRE%20Role" data-goatcounter-click="email-hero">Email me</a>
+<a class="btn" href="https://www.linkedin.com/in/sushobhitkumar-sre" target="_blank" rel="noopener noreferrer" data-goatcounter-click="linkedin-hero">LinkedIn</a>
+<a class="btn" href="tel:+918750754754" data-goatcounter-click="phone-hero">+91-8750754754</a>
+<a class="btn" href="Sushobhit_Kumar_CV.pdf" download data-goatcounter-click="cv-hero">Download CV</a>
 </div>
 </div>
 <div class="hr">
@@ -194,7 +201,7 @@ footer .flinks a:hover{color:var(--acc)}
 <dl class="pa"><dt>Problem</dt><dd>Verifying connectivity between many source and destination servers before and after changes was manual and slow.</dd>
 <dt>Built</dt><dd>A Jenkins-driven framework that validates end-to-end production connectivity across multiple servers automatically.</dd>
 <dt>Stack</dt><dd>Jenkins, Shell, Linux</dd></dl></article>
-<article class="card"><h3>Kong upgrade: bank-wide custom plugins</h3>
+<article class="card"><h3>Kong upgrade: Bank-wide custom plugins</h3>
 <dl class="pa"><dt>Problem</dt><dd>A new Kong version required every custom plugin used across the bank to be redeveloped.</dd>
 <dt>Built</dt><dd>Redeveloped the plugins and delivered the upgrade on time. Recognized with a Certificate of Appreciation (FY25-26).</dd>
 <dt>Stack</dt><dd>Kong API Gateway, NGINX, Linux</dd></dl></article>
@@ -263,16 +270,26 @@ footer .flinks a:hover{color:var(--acc)}
 
 <section id="contact">
 <h2>Contact</h2>
-<div class="card"><p style="color:var(--sub)">Open to SRE, production support and infrastructure roles. The fastest way to reach me is call/email.</p>
-<div class="cta"><a class="btn p" href="mailto:shobhitchaudhary038@gmail.com?subject=Inquiry%20regarding%20SRE%20Role">shobhitchaudhary038@gmail.com</a>
-<a class="btn" href="https://www.linkedin.com/in/sushobhitkumar-sre" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-<a class="btn" href="tel:+918750754754">+91-8750754754</a>
-<a class="btn" href="Sushobhit_Kumar_CV.pdf" download>Download CV</a></div></div>
+<div class="card"><p style="color:var(--sub)">Open to SRE, production support and infrastructure roles. The fastest way to reach me is phone call or email.</p>
+<div class="cta"><a class="btn p" href="mailto:shobhitchaudhary038@gmail.com?subject=Inquiry%20regarding%20SRE%20Role" data-goatcounter-click="email-contact">shobhitchaudhary038@gmail.com</a>
+<a class="btn" href="https://www.linkedin.com/in/sushobhitkumar-sre" target="_blank" rel="noopener noreferrer" data-goatcounter-click="linkedin-contact">LinkedIn</a>
+<a class="btn" href="tel:+918750754754" data-goatcounter-click="phone-contact">+91-8750754754</a>
+<a class="btn" href="Sushobhit_Kumar_CV.pdf" download data-goatcounter-click="cv-contact">Download CV</a></div>
+<form id="sayhi" class="hi-form" action="https://formspree.io/f/moejyowp" method="POST">
+<h3>Say Hi</h3>
+<label>Name<input name="name" required autocomplete="name"></label>
+<label>Email<input type="email" name="email" required autocomplete="email"></label>
+<label>Message (optional)<textarea name="message" rows="3"></textarea></label>
+<input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true">
+<button class="btn p" type="submit">Send</button>
+<p class="note">I will use your name and email only to reply to you.</p>
+<p id="sayhi-st" role="status"></p>
+</form></div>
 </section>
 </main>
 <footer>
 <div><div>&copy; 2026 Sushobhit Kumar. All rights reserved.</div><div>Site Reliability Engineer, Gurugram, India</div></div>
-<nav aria-label="Footer links" class="flinks"><a href="mailto:shobhitchaudhary038@gmail.com">Email</a><a href="https://www.linkedin.com/in/sushobhitkumar-sre" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="Sushobhit_Kumar_CV.pdf" download>Download CV</a><a href="#about">Back to top</a></nav>
+<nav aria-label="Footer links" class="flinks"><a href="mailto:shobhitchaudhary038@gmail.com">Email</a><a href="https://www.linkedin.com/in/sushobhitkumar-sre" target="_blank" rel="noopener noreferrer" data-goatcounter-click="linkedin-footer">LinkedIn</a><a href="Sushobhit_Kumar_CV.pdf" download data-goatcounter-click="cv-footer">Download CV</a><a href="#about">Back to top</a></nav>
 </footer>
 
 <script>
@@ -357,6 +374,11 @@ if(qq&&qc){var last=-1;try{last=parseInt(localStorage.getItem('q'),10)}catch(e){
 var qi=Math.floor(Math.random()*QS.length);if(qi===last)qi=(qi+1)%QS.length;
 try{localStorage.setItem('q',qi)}catch(e){}
 qq.textContent=QS[qi][0];qc.textContent=QS[qi][1]}
+var hf=document.getElementById('sayhi');
+if(hf){hf.addEventListener('submit',function(e){e.preventDefault();var st=document.getElementById('sayhi-st'),act=hf.getAttribute('action');
+if(act.indexOf('YOUR_FORM_ID')>-1){st.textContent='The form is not connected yet. Please email me directly.';return}
+st.textContent='Sending...';
+fetch(act,{method:'POST',body:new FormData(hf),headers:{'Accept':'application/json'}}).then(function(r){if(r.ok){hf.reset();st.textContent='Thanks, I will reply soon.';if(window.goatcounter&&window.goatcounter.count){window.goatcounter.count({path:'say-hi-sent',title:'Say hi form sent',event:true})}}else{st.textContent='Something went wrong. Please email me directly.'}}).catch(function(){st.textContent='Something went wrong. Please email me directly.'})})}
 var root=document.documentElement;
 function toggle(){
 var dark=root.getAttribute('data-theme')?root.getAttribute('data-theme')==='dark':!matchMedia('(prefers-color-scheme: light)').matches;
