@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Study notes | Sushobhit Kumar</title>
+<meta name="description" content="Chapter-wise study notes on SRE, Linux and Kubernetes troubleshooting, written in simple language.">
+<meta name="theme-color" content="#0a0f1a">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230a0f1a'/%3E%3Ctext x='32' y='42' font-family='monospace' font-size='28' font-weight='700' fill='%234cc2ff' text-anchor='middle'%3ESK%3C/text%3E%3C/svg%3E">
+<script data-goatcounter="https://sushobhit.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<style>
+:root{--bg:#0a0f1a;--panel:#111827;--line:#233047;--ink:#eef2f7;--mute:#9aa8bd;--sub:#cbd5e1;--acc:#4cc2ff;--ok:#3ddc97;--term:#05080f;--btn-ink:#06101c;--gold:#e5b94e;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#f5f7fb;--panel:#fff;--line:#d9e0ec;--ink:#0f172a;--mute:#53627a;--sub:#334155;--acc:#0369a1;--ok:#047857;--term:#0b1220;--btn-ink:#fff;--gold:#b45309}}
+:root[data-theme="light"]{--bg:#f5f7fb;--panel:#fff;--line:#d9e0ec;--ink:#0f172a;--mute:#53627a;--sub:#334155;--acc:#0369a1;--ok:#047857;--term:#0b1220;--btn-ink:#fff;--gold:#b45309}
+:root[data-theme="dark"]{--bg:#0a0f1a;--panel:#111827;--line:#233047;--ink:#eef2f7;--mute:#9aa8bd;--sub:#cbd5e1;--acc:#4cc2ff;--ok:#3ddc97;--term:#05080f;--btn-ink:#06101c;--gold:#e5b94e}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{background:var(--bg);color:var(--ink);font:16px/1.7 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased;background-image:radial-gradient(50% 30% at 15% 0%,color-mix(in srgb,var(--acc) 10%,transparent),transparent)}
+a{color:var(--acc)}
+:focus-visible{outline:2px solid var(--acc);outline-offset:3px;border-radius:4px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:30}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+.top .in{max-width:1180px;margin:auto;display:flex;gap:10px;align-items:center;padding:10px 16px}
+.top a.home{color:var(--ink);text-decoration:none;font-weight:700}
+.top .sep{color:var(--mute)}
+.top button{margin-left:auto;background:none;border:1px solid var(--line);color:var(--mute);border-radius:6px;padding:5px 10px;font-size:.82rem;cursor:pointer}
+.wrap{max-width:1180px;margin:0 auto;padding:28px 16px 60px;display:grid;grid-template-columns:260px minmax(0,1fr);gap:36px;align-items:start}
+.side{position:sticky;top:78px;display:grid;gap:14px}
+.side h2{font:600 .78rem/1 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.16em;text-transform:uppercase;color:var(--ok)}
+#q{width:100%;font:inherit;font-size:.92rem;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:9px 12px}
+#tlist{display:grid;gap:6px}
+#tlist .xx{text-align:left;font:inherit;font-size:.93rem;font-weight:600;color:var(--sub);background:none;border:1px solid transparent;border-radius:8px;padding:9px 12px;cursor:pointer}
+#tlist .xx small{display:block;font-weight:400;color:var(--mute);font-size:.78rem}
+#tlist .xx:hover{background:var(--panel)}
+#tlist .xx.on{background:var(--panel);border-color:var(--line);color:var(--ink);box-shadow:inset 3px 0 0 var(--acc)}
+.soon{display:flex;flex-wrap:wrap;gap:6px}.soon span{font-size:.78rem;color:var(--mute);border:1px dashed var(--line);border-radius:999px;padding:2px 10px}
+.topic h1{font-size:clamp(1.8rem,4vw,2.4rem);letter-spacing:-.02em;line-height:1.15}
+.meta{color:var(--mute);font-size:.9rem;margin-top:8px}
+.lead{color:var(--sub);margin-top:14px;max-width:70ch;font-size:1.05rem}
+.toc{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 6px}
+.toc a{font-size:.82rem;color:var(--sub);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:3px 12px;background:var(--panel)}
+.toc a:hover{border-color:var(--acc);color:var(--ink)}
+.topic h2{font-size:1.35rem;margin:38px 0 12px;letter-spacing:-.01em;padding-top:6px}
+.topic h3{font-size:1.02rem;margin:20px 0 6px;color:var(--ink)}
+.topic p{color:var(--sub);margin:10px 0;max-width:75ch}
+.topic ul,.topic ol{padding-left:22px;color:var(--sub);margin:10px 0;max-width:75ch}
+.topic li{margin-bottom:6px}
+.topic code{font:.88em ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:var(--panel);border:1px solid var(--line);border-radius:5px;padding:1px 6px;color:var(--ink)}
+.cb{position:relative;margin:14px 0}
+.cb pre{background:var(--term);border:1px solid var(--line);border-radius:10px;padding:16px 16px;overflow-x:auto;font:.86rem/1.6 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#d6dde8}
+.cb pre code{background:none;border:0;padding:0;color:inherit}
+.cb button{position:absolute;top:8px;right:8px;font-size:.74rem;color:#9fb0c8;background:#111b2c;border:1px solid #243349;border-radius:6px;padding:3px 9px;cursor:pointer}
+.note{border-left:4px solid var(--ok);background:var(--panel);border-radius:0 10px 10px 0;padding:12px 16px;margin:16px 0;color:var(--sub);max-width:75ch}
+.note b{color:var(--ink)}
+.tw{overflow-x:auto;margin:14px 0}
+table{border-collapse:collapse;width:100%;font-size:.92rem}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--sub)}
+th{color:var(--ink);font-weight:650;background:var(--panel)}
+td:first-child{white-space:nowrap;color:var(--ink);font-weight:600}
+.end{margin-top:46px;padding-top:18px;border-top:1px solid var(--line);color:var(--mute);font-size:.86rem}
+.empty{color:var(--mute);padding:8px 12px;font-size:.9rem}
+@media(max-width:860px){.wrap{grid-template-columns:minmax(0,1fr);gap:18px}.side{position:static}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media print{.top,.side,.cb button{display:none}.wrap{display:block}}
+
+.top .in{gap:12px}
+.srch{position:relative;flex:1;max-width:340px;margin-left:auto}
+#q{width:100%;font:inherit;font-size:.9rem;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:7px 12px}
+.top button{margin-left:0}
+#sr{position:absolute;top:calc(100% + 6px);left:0;right:0;background:var(--panel);border:1px solid var(--line);border-radius:10px;box-shadow:0 14px 34px rgba(0,0,0,.28);max-height:60vh;overflow:auto;z-index:40}
+#sr a{display:block;padding:10px 14px;text-decoration:none;color:var(--sub);border-bottom:1px solid var(--line);font-size:.86rem}
+#sr a:last-child{border:0}#sr a:hover{background:var(--bg)}
+#sr b{color:var(--ink);display:block;font-size:.92rem}#sr small{color:var(--mute);display:block}
+.eyebrow{font:600 .78rem/1 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.16em;text-transform:uppercase;color:var(--ok)}
+.libhead h1{font-size:clamp(1.9rem,4.5vw,2.8rem);letter-spacing:-.02em;line-height:1.1;margin-top:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin-top:28px}
+.tc{display:grid;gap:8px;align-content:start;text-decoration:none;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;transition:transform .2s,border-color .2s}
+.tc:hover{transform:translateY(-3px);border-color:var(--acc)}
+.tc h2{font-size:1.12rem;margin:0}.tc p{color:var(--sub);font-size:.92rem;margin:0}
+.tc .tm{color:var(--mute);font-size:.82rem}.tc .tp{color:var(--ok);font-size:.82rem;font-weight:600}
+.tc.soon{border-style:dashed;background:none;color:var(--mute);pointer-events:none}
+.crumb{font-size:.86rem;color:var(--mute);margin-bottom:10px}.crumb a{color:var(--mute);text-decoration:none}.crumb a:hover{color:var(--acc)}
+.rows{display:grid;gap:12px;margin-top:22px}
+.row{display:grid;grid-template-columns:36px minmax(0,1fr);gap:14px;text-decoration:none;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px;color:var(--ink)}
+.row:hover{border-color:var(--acc)}
+.row .n{font:700 1.3rem ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--acc)}
+.row h3{font-size:1.05rem;margin:0 0 4px}.row p{margin:0;color:var(--sub);font-size:.92rem}.row .secs{color:var(--mute);font-size:.82rem;margin-top:6px}
+.pn{display:flex;gap:12px;margin-top:40px;flex-wrap:wrap}
+.pn a{flex:1 1 220px;text-decoration:none;border:1px solid var(--line);background:var(--panel);border-radius:10px;padding:12px 16px;color:var(--ink);font-weight:600}
+.pn a:hover{border-color:var(--acc)}.pn a small{display:block;color:var(--mute);font-size:.78rem;font-weight:400}.pn a.nx{text-align:right}
+.stitle{font-weight:700;color:var(--ink);text-decoration:none;font-size:1.02rem;line-height:1.3}
+#tlist a{display:block;font-size:.93rem;font-weight:600;color:var(--sub);text-decoration:none;border:1px solid transparent;border-radius:8px;padding:9px 12px}
+#tlist a b{color:var(--acc);margin-right:4px}#tlist a small{margin-left:8px;color:var(--ok);font-weight:600;font-size:.74rem}
+#tlist a:hover{background:var(--panel)}#tlist a.on{background:var(--panel);border-color:var(--line);color:var(--ink);box-shadow:inset 3px 0 0 var(--acc)}
+.back{font-size:.86rem;color:var(--mute);text-decoration:none}.back:hover{color:var(--acc)}
+.full{max-width:1180px;margin:0 auto;padding:36px 16px 70px}
+@media(max-width:860px){.srch{max-width:none}.top .sep,.top .cur{display:none}#tlist{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}}
+
+body{background-repeat:no-repeat;background-attachment:fixed}
+.top .in{flex-wrap:wrap}
+.tools{display:flex;gap:8px;align-items:center;margin-left:0}
+.tools button{margin:0}
+.topic{font-size:var(--rs,1rem)}
+:root[data-read="paper"]{--bg:#f4ecd8;--panel:#fbf6e9;--line:#d8c9a8;--ink:#2b2218;--mute:#7a6a52;--sub:#3b3024;--acc:#8a4b14;--ok:#4a6a2c;--term:#2a2118;--btn-ink:#fff}
+:root[data-read="paper"] body{background-image:none}
+:root[data-read="paper"] .topic{font-family:Georgia,"Iowan Old Style","Times New Roman",serif}
+:root[data-read="paper"] .topic p,:root[data-read="paper"] .topic li{line-height:1.85}
+:root[data-read="paper"] .cb pre{color:#f1e8d5;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+:root[data-read="paper"] .tools #read{color:var(--ink);border-color:var(--acc)}
+@media(max-width:860px){.tools{width:100%;justify-content:flex-end}}
+@media print{.tools{display:none}}
+
+details{border:1px solid var(--line);background:var(--panel);border-radius:10px;margin:10px 0;max-width:75ch}
+summary{cursor:pointer;padding:12px 16px;font-weight:600;color:var(--ink);list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"Q";color:var(--acc);font-weight:800;margin-right:10px}
+details[open] summary{border-bottom:1px solid var(--line)}
+details[open] summary::before{content:"A"}
+.topic details p{margin:0;padding:10px 16px 14px}
+.qabtn{font:inherit;font-size:.82rem;color:var(--sub);background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:3px 14px;cursor:pointer;margin:6px 0 0}
+@media print{details{break-inside:avoid}}
+
+#bar{position:fixed;top:env(safe-area-inset-top,0px);left:0;height:3px;width:0;background:var(--acc);z-index:50}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:26px;max-width:620px}
+.stats div{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.stats b{display:block;font-size:1.5rem;letter-spacing:-.02em;color:var(--ink)}.stats span{color:var(--mute);font-size:.82rem}
+.resume{display:grid;gap:2px;margin-top:16px;max-width:620px;text-decoration:none;background:var(--panel);border:1px solid var(--acc);border-radius:12px;padding:14px 18px;color:var(--ink)}
+.resume small{color:var(--ok);font-weight:700;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase}.resume span{color:var(--mute);font-size:.88rem}
+.daily{margin-top:16px;max-width:620px;background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:12px;padding:14px 18px}
+.daily small{color:var(--gold);font-weight:700;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase}.daily h3{font-size:1.02rem;margin:4px 0 8px}.daily p{color:var(--sub);font-size:.94rem;margin:6px 0 0}
+.daily button{font:inherit;font-size:.84rem;color:var(--ink);background:none;border:1px solid var(--line);border-radius:999px;padding:3px 14px;cursor:pointer}
+.ph{font-size:1.25rem;margin-top:38px}
+.tc .st{font:700 .74rem/1 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--acc)}
+.tc .ct{color:var(--mute);font-size:.82rem}
+.tc.planned{background:none;border-style:dashed}.tc.planned h2{color:var(--sub)}
+.row.soon{opacity:.75}.row.soon:hover{border-color:var(--line)}
+.rate{display:flex;gap:8px;padding:0 16px 14px}
+.rate button{font:inherit;font-size:.8rem;color:var(--sub);background:none;border:1px solid var(--line);border-radius:999px;padding:3px 12px;cursor:pointer}
+.rate button:hover{border-color:var(--acc);color:var(--ink)}
+details.known{border-left:4px solid var(--ok)}details.rev{border-left:4px solid var(--gold)}
+#qastat{margin-left:10px;color:var(--mute);font-size:.84rem}
+@media(max-width:560px){.stats{grid-template-columns:repeat(3,1fr);gap:8px}.stats div{padding:10px}.stats b{font-size:1.2rem}}
+.vids{margin-top:34px}.vids h3{font-size:1.05rem;margin:0 0 12px}
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.vc{display:grid;gap:3px;text-decoration:none;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px;color:var(--ink)}
+.vc:hover{border-color:var(--acc)}.vc span{color:var(--ok);font-size:.78rem;font-weight:700}.vc small{color:var(--mute);font-size:.82rem}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<header class="top"><div class="in"><a class="home" href="index.html">Sushobhit Kumar</a><span class="sep">/</span><a class="cur home" href="#" style="font-weight:500;color:var(--sub)">Study notes</a><div class="srch"><input id="q" type="search" placeholder="Search all notes..." aria-label="Search all notes" autocomplete="off"><div id="sr" hidden></div></div><div class="tools"><button id="read" type="button" aria-pressed="false" aria-label="Toggle paper reading mode">Reading mode</button><button id="fm" type="button" aria-label="Smaller text">A-</button><button id="fp" type="button" aria-label="Larger text">A+</button><button id="theme" type="button" aria-label="Toggle color theme">Theme</button></div></div></header>
+<div id="view"></div>
+<template data-topic="sre" data-title="SRE fundamentals" data-desc="Reliability targets, incidents and safe delivery" data-note="Written from my own production support experience and standard SRE practice.">
+<div class="ch" data-id="targets" data-title="Reliability targets" data-intro="How to say how reliable a service must be, and how to use that number.">
+<section data-title="SLI, SLO and SLA">
+<ul>
+<li><b>SLI</b> (indicator) is what you measure. Example: the percentage of requests that return a successful response.</li>
+<li><b>SLO</b> (objective) is the target for that measurement. Example: 99.9% of requests succeed over 30 days.</li>
+<li><b>SLA</b> (agreement) is the promise made to a customer, with a penalty if it is broken. An SLA should always be looser than the SLO.</li>
+</ul>
+<div class="tw"><table>
+<tr><th>SLO</th><th>Allowed downtime in 30 days</th></tr>
+<tr><td>99%</td><td>about 7.2 hours</td></tr>
+<tr><td>99.9%</td><td>about 43 minutes</td></tr>
+<tr><td>99.99%</td><td>about 4.3 minutes</td></tr>
+</table></div>
+<div class="note"><b>Remember:</b> every extra nine costs far more than the one before it. Pick the SLO your users actually need, not the highest number.</div>
+</section>
+<section data-title="Error budget">
+<p>The error budget is the part of the SLO you are allowed to miss: <code>100% - SLO</code>. With a 99.9% SLO, the budget is 0.1% of requests.</p>
+<ul>
+<li>Budget left: ship features, run risky changes.</li>
+<li>Budget finished: slow down, fix reliability first, freeze risky releases.</li>
+</ul>
+<p>This turns the argument "reliability or speed" into a shared number that both developers and operations agree on.</p>
+</section>
+</div>
+<div class="ch" data-id="signals" data-title="Monitoring signals" data-intro="The few signals that tell you whether a service is healthy.">
+<section data-title="The four golden signals">
+<div class="tw"><table>
+<tr><th>Signal</th><th>Question it answers</th></tr>
+<tr><td>Latency</td><td>How long do requests take? Look at the slow ones (p95, p99), not only the average.</td></tr>
+<tr><td>Traffic</td><td>How much demand is the system getting?</td></tr>
+<tr><td>Errors</td><td>How many requests fail, including failures that return a 200 but wrong data?</td></tr>
+<tr><td>Saturation</td><td>How full is the system? CPU, memory, disk, connections, queue depth.</td></tr>
+</table></div>
+</section>
+</div>
+<div class="ch" data-id="incidents" data-title="Incidents and postmortems" data-intro="What to do when something breaks, and how to learn from it.">
+<section data-title="Handling an incident">
+<ol>
+<li><b>Detect and acknowledge.</b> An alert fires, someone owns it.</li>
+<li><b>Triage.</b> How many users are affected? Set a severity.</li>
+<li><b>Mitigate first.</b> Roll back, scale up, fail over, disable the feature. Stop the damage before hunting the cause.</li>
+<li><b>Communicate.</b> Keep a clear timeline and regular updates for stakeholders.</li>
+<li><b>Resolve and verify.</b> Confirm with metrics, not with a feeling.</li>
+<li><b>Write the postmortem.</b></li>
+</ol>
+<div class="note"><b>Rule of thumb:</b> mitigate first, root cause later. A rollback that restores service in five minutes is better than a perfect diagnosis in two hours.</div>
+</section>
+<section data-title="RCA and blameless postmortem">
+<p>A good postmortem explains how the system allowed the failure, not who made the mistake. People who fear blame hide information, and then the same failure comes back.</p>
+<ul>
+<li><b>Summary and impact:</b> what broke, for whom, for how long.</li>
+<li><b>Timeline:</b> detection, actions, recovery, with timestamps.</li>
+<li><b>Trigger vs root cause:</b> the trigger is what set it off (a deploy). The root cause is the weakness that let it hurt (no canary, no rollback test).</li>
+<li><b>What went well, what went badly.</b></li>
+<li><b>Action items:</b> each with an owner and a date. A postmortem without owners is just a story.</li>
+</ul>
+</section>
+</div>
+<div class="ch" data-id="delivery" data-title="Reliable delivery" data-intro="Shipping changes without breaking things, and removing manual work.">
+<section data-title="Safe changes">
+<ul>
+<li>Keep changes small and reversible.</li>
+<li>Roll out gradually (canary), watch the golden signals, then continue.</li>
+<li>Always have a rollback plan before you start.</li>
+<li>Validate after deployment: health checks, key user journeys, error rate.</li>
+</ul>
+</section>
+<section data-title="Toil and automation">
+<p>Toil is manual, repetitive work that grows as the service grows and gives no lasting value. If you do the same task by hand three times, write a script or a pipeline for it. Time saved goes back into reliability work.</p>
+
+</article>
+</section>
+</div>
+<div class="ch" data-id="qa" data-title="Interview questions" data-intro="Practice questions with short answers. Tap a question to see the answer.">
+<section data-title="Common questions">
+<details><summary>What is the difference between SLI, SLO and SLA?</summary><p>SLI is the number you measure, for example the percentage of successful requests. SLO is the internal target for that number, for example 99.9% over 30 days. SLA is the promise made to a customer, with a penalty if it is broken, and it is usually looser than the SLO.</p></details>
+<details><summary>What is an error budget and how do you use it?</summary><p>It is 100% minus the SLO. A 99.9% SLO leaves 0.1%, about 43 minutes of failure in 30 days. While budget is left, teams ship changes. When it is used up, risky releases stop and reliability work comes first.</p></details>
+<details><summary>Production is down and the cause is unknown. What do you do first?</summary><p>Check the impact and scope, ask what changed recently, then mitigate: roll back, fail over or scale. Tell stakeholders what is happening. Find the root cause after service is restored.</p></details>
+<details><summary>Is "the disk was full" a root cause?</summary><p>Usually it is a symptom. Ask why it filled: no log rotation, no alert at 80%, or a runaway log. The missing control is the root cause, and the fixes are rotation, alerting and automated cleanup.</p></details>
+<details><summary>How do you reduce MTTR?</summary><p>Alert on symptoms users feel, keep clear runbooks and dashboards, make rollback fast and safe, automate the common fixes, and practise incident drills.</p></details>
+</section>
+</div>
+</template>
+<template data-topic="linux" data-title="Linux troubleshooting" data-desc="CPU, memory, disk, network and logs" data-note="Written from my own Linux administration and production support experience.">
+<div class="ch" data-id="first" data-title="First look and performance" data-intro="A fixed order to check a slow or broken server.">
+<section data-title="First look (one minute)">
+<div class="cb"><pre><code>uptime                 # load average and how long the server is up
+free -m                # memory (look at "available")
+df -h                  # disk space
+df -i                  # inodes (disk can be "full" with space left)
+top                    # live CPU and memory by process
+dmesg -T | tail -30    # recent kernel messages (OOM, disk errors)</code></pre></div>
+</section>
+<section data-title="CPU and load">
+<p>Load average is the number of tasks running or waiting. Compare it with the CPU core count from <code>nproc</code>. A load of 8 is fine on 16 cores but heavy on 2.</p>
+<div class="cb"><pre><code>nproc
+ps aux --sort=-%cpu | head
+top -H -p &lt;pid&gt;       # per-thread view of one process</code></pre></div>
+<p>High load with low CPU use often means processes are waiting on disk or network, not computing.</p>
+</section>
+<section data-title="Memory and the OOM killer">
+<ul>
+<li>Read the <b>available</b> column in <code>free -m</code>, not "free". Linux uses spare memory for cache.</li>
+<li>If a process vanished without an error, the kernel may have killed it for using too much memory.</li>
+</ul>
+<div class="cb"><pre><code>dmesg -T | grep -i "killed process"
+journalctl -k | grep -i oom
+ps aux --sort=-%mem | head</code></pre></div>
+</section>
+</div>
+<div class="ch" data-id="disk" data-title="Disk and storage" data-intro="Why a disk is full and how to find what is using it.">
+<section data-title="Disk">
+<div class="cb"><pre><code>df -h
+du -sh /var/* 2&gt;/dev/null | sort -h | tail      # biggest folders
+find / -xdev -type f -size +500M 2&gt;/dev/null    # very large files
+lsof +L1                                         # deleted files still held open
+iostat -x 1                                      # disk busy time</code></pre></div>
+<div class="note"><b>Common trap:</b> a big log file is deleted but the application still has it open, so the space is not freed. <code>lsof +L1</code> shows it. Restart or reload the application to release the space.</div>
+</section>
+</div>
+<div class="ch" data-id="net" data-title="Network checks" data-intro="Work from the inside out to find where traffic stops.">
+<section data-title="Network">
+<div class="cb"><pre><code>ip a                       # interfaces and IP addresses
+ip route                   # routing table
+ss -tulnp                  # listening ports and which process owns them
+ss -s                      # socket summary
+curl -v http://host:port   # test an HTTP endpoint
+nc -zv host port           # test if a TCP port is open
+dig example.com            # DNS lookup
+traceroute host            # where the path breaks</code></pre></div>
+<p>Work from the inside out: is the app listening on the port, can the server reach the destination, does DNS resolve, and is a firewall in between?</p>
+</section>
+</div>
+<div class="ch" data-id="logs" data-title="Services and logs" data-intro="Read service status and logs, and keep logs from filling the disk.">
+<section data-title="Services and logs">
+<div class="cb"><pre><code>systemctl status myapp
+systemctl restart myapp
+journalctl -u myapp --since "1 hour ago"
+journalctl -u myapp -f             # follow live
+tail -f /var/log/myapp/app.log
+grep -i error /var/log/myapp/app.log | tail</code></pre></div>
+</section>
+<section data-title="Log rotation">
+<p>Logs that are never rotated slowly fill the disk. <code>logrotate</code> compresses and removes old logs on a schedule.</p>
+<div class="cb"><pre><code>/var/log/myapp/*.log {
+    daily
+    rotate 14
+    compress
+    missingok
+    notifempty
+    copytruncate
+}</code></pre></div>
+<ul>
+<li><code>copytruncate</code> copies the log and empties the original, so the app does not need to reopen the file. A few lines may be lost in the gap.</li>
+<li>Test a config without changing anything: <code>logrotate -d /etc/logrotate.d/myapp</code>. Force a run with <code>logrotate -f</code>.</li>
+</ul>
+</section>
+</div>
+<div class="ch" data-id="perm" data-title="Permissions" data-intro="Read and set file permissions the right way.">
+<section data-title="File permissions">
+<div class="tw"><table>
+<tr><th>Number</th><th>Meaning</th></tr>
+<tr><td>4 / 2 / 1</td><td>read / write / execute, added together per user, group, others</td></tr>
+<tr><td>755</td><td>owner can do everything, everyone else can read and run (scripts, folders)</td></tr>
+<tr><td>644</td><td>owner can read and write, everyone else only read (normal files)</td></tr>
+<tr><td>600</td><td>only the owner can read and write (private keys)</td></tr>
+</table></div>
+<div class="cb"><pre><code>ls -l file
+chmod 640 file
+chown appuser:appgroup file</code></pre></div>
+
+</article>
+</section>
+</div>
+<div class="ch" data-id="qa" data-title="Interview questions" data-intro="Practice questions with short answers. Tap a question to see the answer.">
+<section data-title="Common questions">
+<details><summary>Load average is 20 on a 4-core server. What does it mean?</summary><p>About 5 tasks per core are running or waiting, so the server is overloaded. Waiting on disk also raises load. Compare CPU use with I/O wait in top or vmstat, then check the top processes.</p></details>
+<details><summary>df -h shows 90% but du does not add up. Why?</summary><p>A deleted file is still held open by a process (find it with lsof +L1), or data is hidden under a mount point. Restarting or reloading the process frees the space.</p></details>
+<details><summary>The disk has free space but you get "No space left on device".</summary><p>The inodes are used up, check df -i. This happens with huge numbers of small files. Find the folder with the most files and clean it.</p></details>
+<details><summary>A port is listening but clients cannot connect. What do you check?</summary><p>The bind address (127.0.0.1 versus 0.0.0.0) with ss -tulnp, then the host firewall, the network firewall or security group, and the route.</p></details>
+<details><summary>An application stopped and its own log shows no error.</summary><p>The kernel OOM killer may have ended it. Check dmesg -T | grep -i killed, then look at memory limits and for a leak.</p></details>
+<details><summary>What is the difference between connection refused and connection timeout?</summary><p>Refused means the host was reached but nothing is listening on that port. A timeout means packets are being dropped or cannot find a route, which points to a firewall or routing problem.</p></details>
+</section>
+</div>
+</template>
+<template data-topic="k8s" data-title="Kubernetes troubleshooting" data-desc="Pods, services, nodes and rollouts" data-note="Written for study. The commands are standard kubectl usage; see the official Kubernetes documentation for details.">
+<div class="ch" data-id="model" data-title="How it fits together" data-intro="The objects, and the order in which to debug them.">
+<section data-title="The mental model">
+<ul>
+<li>A <b>Pod</b> runs your containers. A <b>ReplicaSet</b> keeps the right number of pods. A <b>Deployment</b> manages ReplicaSets and rollouts.</li>
+<li>A <b>Service</b> finds pods by <b>labels</b> and gives them one stable address. The pod IPs behind it are called <b>Endpoints</b>.</li>
+<li>The <b>control plane</b> (API server, etcd, scheduler, controller manager) decides. The <b>kubelet</b> on each node runs the pods.</li>
+</ul>
+<div class="note"><b>First check, always:</b> are you on the right cluster and namespace? <code>kubectl config current-context</code> and add <code>-n &lt;namespace&gt;</code>.</div>
+</section>
+<section data-title="The debug order">
+<div class="cb"><pre><code>kubectl get pods -o wide                       # status, node, restarts
+kubectl describe pod &lt;pod&gt;                     # events at the bottom tell the story
+kubectl logs &lt;pod&gt;                             # current logs
+kubectl logs &lt;pod&gt; --previous                  # logs of the crashed container
+kubectl get events --sort-by=.lastTimestamp    # what happened recently
+kubectl exec -it &lt;pod&gt; -- sh                   # look inside</code></pre></div>
+</section>
+</div>
+<div class="ch" data-id="pods" data-title="Pod problems" data-intro="What each pod state means and where to look.">
+<section data-title="Pod states and what they mean">
+<div class="tw"><table>
+<tr><th>State</th><th>Usual cause and where to look</th></tr>
+<tr><td>Pending</td><td>No node can run it: not enough CPU or memory, a taint with no toleration, a wrong nodeSelector, or an unbound volume. See <code>FailedScheduling</code> in describe.</td></tr>
+<tr><td>ContainerCreating</td><td>Pulling the image, mounting a volume, or the network plugin is not ready. Check events.</td></tr>
+<tr><td>ImagePullBackOff</td><td>Wrong image name or tag, or no permission for a private registry. Check the image and <code>imagePullSecrets</code>.</td></tr>
+<tr><td>CrashLoopBackOff</td><td>The app starts and exits again and again. Read <code>logs --previous</code> and the exit code. Also check a failing liveness probe.</td></tr>
+<tr><td>OOMKilled</td><td>The container used more memory than its limit. Exit code 137. Raise the limit or fix the leak.</td></tr>
+<tr><td>Evicted</td><td>The node ran short of memory or disk. Look at node pressure.</td></tr>
+<tr><td>Terminating (stuck)</td><td>A finalizer or a node problem is blocking deletion. Force delete is the last option.</td></tr>
+</table></div>
+<p>Exit codes help: <code>1</code> is usually an application error, <code>137</code> means the process was killed (often memory), <code>143</code> means a normal stop signal.</p>
+</section>
+<section data-title="Probes">
+<ul>
+<li><b>Liveness:</b> is the container stuck? If it fails, Kubernetes restarts it.</li>
+<li><b>Readiness:</b> can it take traffic now? If it fails, the pod is removed from the Service, but not restarted.</li>
+<li><b>Startup:</b> gives slow apps time to start before the other probes begin.</li>
+</ul>
+<div class="note"><b>Common trap:</b> a liveness probe that is too strict kills a healthy but slow app, and you see an endless restart loop. Check probe timing before blaming the code.</div>
+</section>
+<section data-title="Requests, limits and QoS">
+<ul>
+<li><b>Requests</b> are what the scheduler reserves for the pod. <b>Limits</b> are the maximum it may use.</li>
+<li>Exceeding the memory limit kills the container (OOMKilled). Exceeding the CPU limit only slows it down (throttling).</li>
+<li>Pods with requests equal to limits are <i>Guaranteed</i> and are evicted last. Pods with no requests are <i>BestEffort</i> and are evicted first.</li>
+</ul>
+
+</article>
+</section>
+</div>
+<div class="ch" data-id="net" data-title="Networking" data-intro="When a Service cannot be reached.">
+<section data-title="Service not reachable">
+<div class="cb"><pre><code>kubectl get svc &lt;svc&gt;
+kubectl get endpoints &lt;svc&gt;                    # empty = selector does not match any pod
+kubectl get pods --show-labels                 # compare labels with the Service selector
+kubectl describe svc &lt;svc&gt;                     # port and targetPort
+kubectl exec -it &lt;pod&gt; -- nslookup &lt;svc&gt;       # DNS from inside the cluster
+kubectl exec -it &lt;pod&gt; -- curl -v http://&lt;svc&gt;:&lt;port&gt;</code></pre></div>
+<ul>
+<li>Empty endpoints almost always mean the labels do not match, or the pods are not Ready.</li>
+<li>Check <code>port</code> (what clients call) against <code>targetPort</code> (what the container listens on).</li>
+<li>If DNS fails, look at the CoreDNS pods in <code>kube-system</code>. If only some traffic fails, check NetworkPolicies.</li>
+</ul>
+</section>
+</div>
+<div class="ch" data-id="ops" data-title="Nodes and rollouts" data-intro="Node trouble, new releases and rollbacks.">
+<section data-title="Node problems">
+<div class="cb"><pre><code>kubectl get nodes
+kubectl describe node &lt;node&gt;          # conditions: Ready, MemoryPressure, DiskPressure
+kubectl top node                       # needs metrics-server
+journalctl -u kubelet -f               # on the node itself
+kubectl cordon &lt;node&gt;                  # stop new pods landing here
+kubectl drain &lt;node&gt; --ignore-daemonsets --delete-emptydir-data
+kubectl uncordon &lt;node&gt;                # allow scheduling again</code></pre></div>
+</section>
+<section data-title="Deployments and rollbacks">
+<div class="cb"><pre><code>kubectl rollout status deployment/&lt;name&gt;
+kubectl rollout history deployment/&lt;name&gt;
+kubectl rollout undo deployment/&lt;name&gt;       # back to the previous version
+kubectl rollout restart deployment/&lt;name&gt;    # fresh pods, picks up new ConfigMap or Secret</code></pre></div>
+<p>If a new release breaks things, <code>rollout undo</code> first, investigate after. It follows the same rule as any incident: mitigate first.</p>
+</section>
+</div>
+<div class="ch" data-id="qa" data-title="Interview questions" data-intro="Practice questions with short answers. Tap a question to see the answer.">
+<section data-title="Common questions">
+<details><summary>A pod is in CrashLoopBackOff. What are your first steps?</summary><p>Run describe pod and read the events, then logs --previous, and check the exit code. After that look at the probes, the config and secrets, and the image command.</p></details>
+<details><summary>A pod is stuck in Pending.</summary><p>Run describe pod and look for FailedScheduling. Common causes are not enough CPU or memory, a taint with no toleration, a wrong nodeSelector or affinity, or an unbound PVC.</p></details>
+<details><summary>A Service exists but its endpoints are empty.</summary><p>The Service selector does not match any pod labels, or the pods are not Ready. Compare the labels and check the readiness probe.</p></details>
+<details><summary>What is the difference between liveness and readiness probes?</summary><p>Liveness decides if a container must be restarted. Readiness decides if it should receive traffic, and a failing pod is only removed from the Service, not restarted.</p></details>
+<details><summary>What does exit code 137 mean?</summary><p>The process was killed with SIGKILL, very often by the OOM killer because it passed its memory limit. Check the limit and the real memory use.</p></details>
+<details><summary>A new release broke production. What do you do?</summary><p>Run kubectl rollout undo to restore the last working version, confirm health, then investigate. Mitigate first, find the cause after.</p></details>
+</section>
+</div>
+</template>
+<template data-topic="net" data-soon data-title="Networking" data-desc="IP, DNS, routing, firewalls and how to debug connections">
+<div class="ch" data-id="basics" data-title="Networking basics" data-intro="OSI and TCP/IP, ports, TCP and UDP, the three-way handshake"></div>
+<div class="ch" data-id="ip" data-title="IP addressing and subnets" data-intro="CIDR, private ranges, gateways and NAT"></div>
+<div class="ch" data-id="dns" data-title="DNS" data-intro="Records, resolution, caching and common failures"></div>
+<div class="ch" data-id="routing" data-title="Routing and firewalls" data-intro="Routes, iptables and ufw, security groups"></div>
+<div class="ch" data-id="http" data-title="HTTP and TLS" data-intro="Status codes, headers, certificates and handshakes"></div>
+<div class="ch" data-id="debug" data-title="Debugging connections" data-intro="ss, curl, dig, traceroute and tcpdump"></div>
+</template>
+<template data-topic="git" data-soon data-title="Git and GitHub" data-desc="Version control from first commit to team workflow">
+<div class="ch" data-id="basics" data-title="Git basics" data-intro="Commits, staging, history"></div>
+<div class="ch" data-id="branch" data-title="Branching and merging" data-intro="Branches, merge conflicts, strategies"></div>
+<div class="ch" data-id="undo" data-title="Undoing changes" data-intro="Reset, revert, rebase and cherry-pick"></div>
+<div class="ch" data-id="team" data-title="Working in a team" data-intro="Pull requests, GitFlow, code review"></div>
+<div class="ch" data-id="hooks" data-title="Hooks and automation" data-intro="Git hooks and simple checks"></div>
+</template>
+<template data-topic="bash" data-soon data-title="Bash scripting" data-desc="Automate boring work with safe shell scripts">
+<div class="ch" data-id="basics" data-title="Bash basics" data-intro="Variables, conditions and loops"></div>
+<div class="ch" data-id="func" data-title="Functions and arguments" data-intro="Reusable scripts"></div>
+<div class="ch" data-id="text" data-title="Text processing" data-intro="grep, awk and sed on real logs"></div>
+<div class="ch" data-id="health" data-title="Health-check scripts" data-intro="CPU, disk, memory and service checks"></div>
+<div class="ch" data-id="safe" data-title="Safe scripting" data-intro="set -euo pipefail, cron and dry runs"></div>
+</template>
+<template data-topic="docker" data-soon data-title="Docker" data-desc="Containers, images and Compose">
+<div class="ch" data-id="intro" data-title="Containers vs virtual machines" data-intro="How a container really works"></div>
+<div class="ch" data-id="image" data-title="Images and Dockerfile" data-intro="Clean, small images"></div>
+<div class="ch" data-id="build" data-title="Multi-stage builds and security" data-intro="Best practices"></div>
+<div class="ch" data-id="net" data-title="Networking and volumes" data-intro="Ports, networks, data persistence"></div>
+<div class="ch" data-id="compose" data-title="Docker Compose" data-intro="App plus database plus cache"></div>
+<div class="ch" data-id="debug" data-title="Troubleshooting containers" data-intro="Exits, ports and disk usage"></div>
+</template>
+<template data-topic="k8sf" data-soon data-title="Kubernetes fundamentals" data-desc="The core objects and how a cluster is built">
+<div class="ch" data-id="arch" data-title="Architecture" data-intro="Control plane and worker nodes"></div>
+<div class="ch" data-id="pods" data-title="Pods and Deployments" data-intro="ReplicaSets and rollouts"></div>
+<div class="ch" data-id="svc" data-title="Services and Ingress" data-intro="ClusterIP, NodePort, LoadBalancer"></div>
+<div class="ch" data-id="cfg" data-title="ConfigMaps, Secrets and Namespaces" data-intro="Configuration done right"></div>
+<div class="ch" data-id="res" data-title="Resource limits" data-intro="Requests, limits and quotas"></div>
+<div class="ch" data-id="setup" data-title="Setting up a cluster" data-intro="kubeadm and managed clusters like EKS"></div>
+</template>
+<template data-topic="helm" data-soon data-title="Helm, ArgoCD and scaling" data-desc="Packaging, GitOps and safe rollouts">
+<div class="ch" data-id="helm" data-title="Helm basics" data-intro="Charts, values and releases"></div>
+<div class="ch" data-id="charts" data-title="Writing and customising charts" data-intro="Templates and overrides"></div>
+<div class="ch" data-id="argo" data-title="GitOps with ArgoCD" data-intro="Sync, drift and rollback"></div>
+<div class="ch" data-id="strat" data-title="Deployment strategies" data-intro="Rolling, blue-green, canary and recreate"></div>
+<div class="ch" data-id="scale" data-title="Autoscaling with HPA and KEDA" data-intro="Scaling on CPU and events"></div>
+<div class="ch" data-id="pdb" data-title="Pod Disruption Budgets" data-intro="Voluntary disruptions and safe drains"></div>
+<div class="ch" data-id="auth" data-title="Bearer tokens and API access" data-intro="ServiceAccounts and tokens"></div>
+</template>
+<template data-topic="cicd" data-soon data-title="CI/CD with Jenkins" data-desc="Pipelines from commit to production">
+<div class="ch" data-id="concepts" data-title="CI/CD concepts" data-intro="Why pipelines exist"></div>
+<div class="ch" data-id="jenkins" data-title="Jenkins architecture" data-intro="Controller, agents and plugins"></div>
+<div class="ch" data-id="pipe" data-title="Declarative pipelines" data-intro="Jenkinsfile, stages and parameters"></div>
+<div class="ch" data-id="hooks" data-title="Webhooks, agents and SSH" data-intro="Triggers and remote execution"></div>
+<div class="ch" data-id="lib" data-title="Shared libraries" data-intro="Reuse across pipelines"></div>
+<div class="ch" data-id="debug" data-title="Troubleshooting Jenkins" data-intro="Stuck jobs, offline agents, credentials"></div>
+<div class="ch" data-id="gha" data-title="GitHub Actions basics" data-intro="Workflows and secrets"></div>
+</template>
+<template data-topic="tf" data-soon data-title="Terraform" data-desc="Infrastructure as code, safely">
+<div class="ch" data-id="iac" data-title="Infrastructure as code" data-intro="The idea and the workflow"></div>
+<div class="ch" data-id="hcl" data-title="HCL, providers and resources" data-intro="Writing your first config"></div>
+<div class="ch" data-id="vars" data-title="Variables and outputs" data-intro="Reusable configuration"></div>
+<div class="ch" data-id="state" data-title="State and remote backends" data-intro="S3, locking and recovery"></div>
+<div class="ch" data-id="mod" data-title="Modules" data-intro="Structure for real projects"></div>
+<div class="ch" data-id="safe" data-title="Safe changes in production" data-intro="Plan reviews and drift"></div>
+</template>
+<template data-topic="ansible" data-soon data-title="Ansible" data-desc="Configuration management and automation">
+<div class="ch" data-id="inv" data-title="Inventory and ad-hoc commands" data-intro="Targeting servers"></div>
+<div class="ch" data-id="play" data-title="Playbooks" data-intro="Tasks, handlers and idempotence"></div>
+<div class="ch" data-id="roles" data-title="Roles" data-intro="Structure and reuse"></div>
+<div class="ch" data-id="vars" data-title="Variables and templates" data-intro="Jinja2 in practice"></div>
+<div class="ch" data-id="scale" data-title="Running at scale safely" data-intro="Serial, check mode and limits"></div>
+</template>
+<template data-topic="aws" data-soon data-title="AWS and IAM" data-desc="Core services, networking and access">
+<div class="ch" data-id="core" data-title="Core services" data-intro="EC2, S3, EBS and load balancers"></div>
+<div class="ch" data-id="vpc" data-title="VPC and networking" data-intro="Subnets, gateways, security groups and NACLs"></div>
+<div class="ch" data-id="iam" data-title="IAM roles and policies" data-intro="Least privilege"></div>
+<div class="ch" data-id="sts" data-title="STS and assume role" data-intro="Security Token Service and web identity"></div>
+<div class="ch" data-id="scale" data-title="Scaling and availability" data-intro="Auto Scaling and health checks"></div>
+<div class="ch" data-id="debug" data-title="Troubleshooting on AWS" data-intro="Unreachable instances, 502s, access denied"></div>
+</template>
+<template data-topic="mon" data-soon data-title="Monitoring and logging" data-desc="See problems before users do">
+<div class="ch" data-id="prom" data-title="Metrics with Prometheus" data-intro="Exporters and queries"></div>
+<div class="ch" data-id="alert" data-title="Alerting" data-intro="Alertmanager and alert design"></div>
+<div class="ch" data-id="graf" data-title="Grafana dashboards" data-intro="Useful dashboards"></div>
+<div class="ch" data-id="elk" data-title="Centralised logging" data-intro="ELK, EFK and Loki"></div>
+<div class="ch" data-id="trace" data-title="Tracing a request" data-intro="Correlating logs across services"></div>
+</template>
+<template data-topic="sec" data-soon data-title="Security basics" data-desc="Access, secrets and certificates">
+<div class="ch" data-id="iam" data-title="Least privilege" data-intro="Users, roles and policies"></div>
+<div class="ch" data-id="tls" data-title="SSL/TLS and certificates" data-intro="Handshake and expiry"></div>
+<div class="ch" data-id="sec" data-title="Secrets management" data-intro="Vault and Kubernetes Secrets"></div>
+<div class="ch" data-id="net" data-title="Firewalls and security groups" data-intro="Network controls"></div>
+<div class="ch" data-id="hard" data-title="Hardening a server" data-intro="SSH, patching and audit"></div>
+<div class="ch" data-id="inv" data-title="Investigating a suspicious server" data-intro="What to check first"></div>
+</template>
+<template data-topic="interview" data-soon data-title="Interview scenarios" data-desc="Troubleshooting stories and a framework to answer them">
+<div class="ch" data-id="frame" data-title="How to answer a scenario" data-intro="Impact, scope, change, isolate, mitigate, validate"></div>
+<div class="ch" data-id="p1" data-title="Production incidents (P1)" data-intro="Leading an outage"></div>
+<div class="ch" data-id="linuxnet" data-title="Linux and networking scenarios" data-intro="Slow servers and unreachable ports"></div>
+<div class="ch" data-id="web" data-title="Nginx, HTTP and Java apps" data-intro="502, 504 and slow responses"></div>
+<div class="ch" data-id="data" data-title="Databases and Kafka" data-intro="Connections, lag and locks"></div>
+<div class="ch" data-id="cloud" data-title="Kubernetes and AWS scenarios" data-intro="Pods, nodes and load balancers"></div>
+<div class="ch" data-id="sre" data-title="SRE, RCA and design" data-intro="SLOs, postmortems and system design"></div>
+</template>
+<template data-topic="sql" data-soon data-title="SQL" data-desc="Query data with confidence">
+<div class="ch" data-id="basic" data-title="Queries and filtering" data-intro="SELECT, WHERE, ORDER BY"></div>
+<div class="ch" data-id="join" data-title="Joins" data-intro="Combining tables"></div>
+<div class="ch" data-id="group" data-title="Grouping and aggregates" data-intro="GROUP BY and HAVING"></div>
+<div class="ch" data-id="index" data-title="Indexes and performance" data-intro="Why queries are slow"></div>
+<div class="ch" data-id="tx" data-title="Transactions" data-intro="ACID and locking"></div>
+</template>
+<template data-topic="sysdesign" data-soon data-title="System design" data-desc="Design reliable systems on paper">
+<div class="ch" data-id="approach" data-title="A simple approach" data-intro="Requirements first"></div>
+<div class="ch" data-id="scale" data-title="Scaling and load balancing" data-intro="Horizontal scale and health checks"></div>
+<div class="ch" data-id="cache" data-title="Caching" data-intro="Where and what to cache"></div>
+<div class="ch" data-id="db" data-title="Databases" data-intro="Replication, sharding and failover"></div>
+<div class="ch" data-id="queue" data-title="Queues and messaging" data-intro="Decoupling services"></div>
+<div class="ch" data-id="rel" data-title="Reliability patterns" data-intro="Timeouts, retries and circuit breakers"></div>
+</template>
+<template data-topic="python" data-soon data-title="Python for automation" data-desc="Scripts that save time in operations">
+<div class="ch" data-id="basic" data-title="Python basics" data-intro="Types, loops and functions"></div>
+<div class="ch" data-id="files" data-title="Files and text" data-intro="Parsing logs"></div>
+<div class="ch" data-id="api" data-title="Working with APIs" data-intro="Requests and JSON"></div>
+<div class="ch" data-id="ops" data-title="Scripts for operations" data-intro="Health checks and reports"></div>
+<div class="ch" data-id="sched" data-title="Packaging and scheduling" data-intro="Running scripts reliably"></div>
+</template>
+<script>
+(function(){
+var T=[],DQ=[],byId={},ORDER=['sre','linux','net','git','bash','docker','k8sf','k8s','helm','cicd','tf','ansible','aws','mon','sec','interview','sql','sysdesign','python'],view=document.getElementById('view'),q=document.getElementById('q'),sr=document.getElementById('sr'),pend=null,rm=matchMedia('(prefers-reduced-motion: reduce)').matches,read={};
+try{read=JSON.parse(localStorage.getItem('sread')||'{}')}catch(e){}
+var S={last:null,days:[],qa:{}};
+try{S=Object.assign(S,JSON.parse(localStorage.getItem('sstate')||'{}'))}catch(e){}
+function save(){try{localStorage.setItem('sstate',JSON.stringify(S))}catch(e){}}
+function dk(d){return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate()}
+function touch(){var k=dk(new Date());if(S.days.indexOf(k)<0){S.days.push(k);S.days=S.days.slice(-400)}}
+function streak(){var n=0,d=new Date();while(true){if(S.days.indexOf(dk(d))>-1){n++;d.setDate(d.getDate()-1)}else if(n===0&&dk(d)===dk(new Date())){d.setDate(d.getDate()-1)}else break}return n}
+function mark(t,c){S.last={t:t.id,c:c.id};touch();save();if(window.goatcounter&&window.goatcounter.count){try{window.goatcounter.count({path:'study/'+t.id+'/'+c.id,title:t.title+': '+c.title,event:true})}catch(e){}}}
+function words(s){return s.trim().split(/\s+/).length}
+document.querySelectorAll('template[data-topic]').forEach(function(tp){
+ var t={id:tp.dataset.topic,title:tp.dataset.title,desc:tp.dataset.desc,note:tp.dataset.note||'',soon:tp.hasAttribute('data-soon'),chapters:[]};
+ tp.content.querySelectorAll('.ch').forEach(function(c){
+  var ch={id:c.dataset.id,title:c.dataset.title,intro:c.dataset.intro||'',sections:[],w:0};
+  c.querySelectorAll('section').forEach(function(s,i){var raw=s.textContent.replace(/\s+/g,' ').trim();ch.w+=words(raw);ch.sections.push({id:t.id+'-'+ch.id+'-'+i,title:s.dataset.title,html:s.innerHTML,raw:raw});[].forEach.call(s.querySelectorAll('details'),function(d){DQ.push({q:d.querySelector('summary').textContent,a:d.querySelector('p').textContent,t:t.id,c:ch.id,tt:t.title})})});
+  t.chapters.push(ch)});
+ T.push(t);byId[t.id]=t});
+T.sort(function(a,b){return ORDER.indexOf(a.id)-ORDER.indexOf(b.id)});
+var YT='https://www.youtube.com/results?search_query=';
+function yt(n,l,q,d){return {n:n,l:l,u:YT+encodeURIComponent(q),d:d}}
+function nana(q){return yt('TechWorld with Nana','English','TechWorld with Nana '+q,'Clear, beginner-friendly DevOps tutorials')}
+function mp(q){return yt('M Prashant','Hindi','M Prashant '+q+' Hindi','Explanations in Hindi')}
+var VIDEOS={
+ linux:[yt('Server Gyan, Dr. Lokendra','Hindi','Server Gyan Dr Lokendra Linux','Linux and server topics in Hindi')],
+ docker:[nana('Docker'),mp('Docker')],
+ k8sf:[nana('Kubernetes'),mp('Kubernetes')],
+ k8s:[nana('Kubernetes troubleshooting')],
+ helm:[nana('Helm ArgoCD')],
+ cicd:[nana('Jenkins CI CD'),mp('Jenkins CI CD')],
+ tf:[nana('Terraform'),mp('Terraform')],
+ ansible:[nana('Ansible')],
+ aws:[nana('AWS'),mp('AWS')],
+ sysdesign:[yt('Gaurav Sen','English','Gaurav Sen system design','System design concepts explained step by step')],
+ python:[yt('CodeWithHarry','Hindi','CodeWithHarry Python tutorial Hindi','Beginner tutorials in Hindi')],
+ sql:[yt('CodeWithHarry','Hindi','CodeWithHarry SQL tutorial Hindi','Beginner tutorials in Hindi')]
+};
+function vids(t){var v=VIDEOS[t.id];if(!v||!v.length)return '';return '<div class="vids"><h3>Watch and learn</h3><div class="vgrid">'+v.map(function(x){return '<a class="vc" href="'+x.u+'" target="_blank" rel="noopener noreferrer" data-goatcounter-click="video-'+t.id+'"><b>'+x.n+'</b><span>'+x.l+'</span><small>'+x.d+'</small></a>'}).join('')+'</div></div>'}
+function mins(w){return Math.max(1,Math.round(w/200))}
+function nsec(t){return t.chapters.reduce(function(a,c){return a+c.sections.length},0)}
+function tw(t){return t.chapters.reduce(function(a,c){return a+c.w},0)}
+function nread(t){return t.chapters.filter(function(c){return read[t.id+'/'+c.id]}).length}
+function setTitle(s){document.title=s+' | Sushobhit Kumar'}
+function lib(){
+ var tot=0,rd=0;T.forEach(function(t){if(!t.soon){tot+=t.chapters.length;rd+=nread(t)}});
+ var kq=Object.keys(S.qa).filter(function(k){return S.qa[k]==='k'}).length,sk=streak();
+ var h='<div class="full"><div class="libhead"><p class="eyebrow">Study notes</p><h1>Learn DevOps and SRE, one small step a day</h1><p class="lead">Short chapters, real troubleshooting and practice questions. Follow the path from the top, or jump to any topic.</p></div>';
+ h+='<div class="stats"><div><b>'+sk+'</b><span>day streak</span></div><div><b>'+rd+' / '+tot+'</b><span>chapters read</span></div><div><b>'+kq+'</b><span>questions known</span></div></div>';
+ if(S.last&&byId[S.last.t]){var lt=byId[S.last.t],lc=lt.chapters.filter(function(x){return x.id===S.last.c})[0];if(lc&&!lt.soon)h+='<a class="resume" href="#'+lt.id+'/'+lc.id+'"><small>Continue where you left off</small><b>'+lc.title+'</b><span>'+lt.title+'</span></a>'}
+ if(DQ.length){var d=new Date(),q=DQ[(d.getFullYear()*372+d.getMonth()*31+d.getDate())%DQ.length];h+='<div class="daily"><small>Question of the day</small><h3>'+q.q+'</h3><button type="button" id="dqb">Show answer</button><p id="dqa" hidden>'+q.a+' <a href="#'+q.t+'/'+q.c+'">More in '+q.tt+'</a></p></div>'}
+ h+='<h2 class="ph">The learning path</h2><div class="cards">';
+ T.forEach(function(t,i){
+  if(t.soon){h+='<a class="tc planned" href="#'+t.id+'"><span class="st">Step '+(i+1)+'</span><h2>'+t.title+'</h2><p>'+t.desc+'</p><span class="ct">Coming soon, '+t.chapters.length+' chapters planned</span></a>'}
+  else{h+='<a class="tc" href="#'+t.id+'"><span class="st">Step '+(i+1)+'</span><h2>'+t.title+'</h2><p>'+t.desc+'</p><span class="tm">'+t.chapters.length+' chapters, '+nsec(t)+' sections, about '+mins(tw(t))+' min</span><span class="tp">'+nread(t)+' of '+t.chapters.length+' chapters read</span></a>'}
+ });
+ view.innerHTML=h+'</div></div>';
+ var b=document.getElementById('dqb');if(b)b.addEventListener('click',function(){document.getElementById('dqa').hidden=false;b.hidden=true});
+ setTitle('Study notes');
+}
+function side(t,cur){
+ var h='<aside class="side"><a class="stitle" href="#'+t.id+'">'+t.title+'</a><h2>Chapters</h2><div id="tlist">';
+ t.chapters.forEach(function(c,i){h+='<a href="#'+t.id+(t.soon?'':'/'+c.id)+'"'+(cur===c.id?' class="on"':'')+'><b>'+(i+1)+'.</b>'+c.title+(read[t.id+'/'+c.id]?'<small>read</small>':'')+'</a>'});
+ return h+'</div><a class="back" href="#">All topics</a></aside>';
+}
+function topic(t){
+ var h='<div class="wrap">'+side(t,'')+'<main><article class="topic"><p class="crumb"><a href="#">Study notes</a> / '+t.title+'</p><h1>'+t.title+'</h1><p class="meta">'+t.chapters.length+' chapters, '+nsec(t)+' sections, about '+mins(tw(t))+' min read</p><p class="lead">'+t.desc+'. Choose a chapter to start.</p><div class="rows">';
+ t.chapters.forEach(function(c,i){if(t.soon){h+='<div class="row soon"><span class="n">'+(i+1)+'</span><div><h3>'+c.title+'</h3><p>'+c.intro+'</p></div></div>'}else{h+='<a class="row" href="#'+t.id+'/'+c.id+'"><span class="n">'+(i+1)+'</span><div><h3>'+c.title+'</h3><p>'+c.intro+'</p><p class="secs">'+c.sections.map(function(s){return s.title}).join('  /  ')+'</p></div></a>'}});
+ view.innerHTML=h+'</div>'+vids(t)+(t.note?'<p class="end">'+t.note+'</p>':'')+'</article></main></div>';setTitle(t.title+' | Study notes');
+ if(t.soon){view.querySelector('.meta').textContent='Coming soon, '+t.chapters.length+' chapters planned';view.querySelector('.lead').textContent=t.desc+'. These chapters are planned and will be added soon.'}
+}
+function chapter(t,c){
+ var i=t.chapters.indexOf(c),h='<div class="wrap">'+side(t,c.id)+'<main><article class="topic"><p class="crumb"><a href="#">Study notes</a> / <a href="#'+t.id+'">'+t.title+'</a> / '+c.title+'</p><h1>'+c.title+'</h1><p class="meta">Chapter '+(i+1)+' of '+t.chapters.length+', '+c.sections.length+' sections, about '+mins(c.w)+' min read</p><p class="lead">'+c.intro+'</p><nav class="toc" aria-label="Sections in this chapter">';
+ c.sections.forEach(function(s){h+='<a href="#" data-go="'+s.id+'">'+s.title+'</a>'});
+ h+='</nav>';
+ c.sections.forEach(function(s){h+='<h2 id="'+s.id+'">'+s.title+'</h2>'+s.html});
+ var p=t.chapters[i-1],n=t.chapters[i+1];
+ h+=vids(t);h+='<div class="pn" id="pn">'+(p?'<a class="pv" href="#'+t.id+'/'+p.id+'"><small>Previous chapter</small>'+p.title+'</a>':'<a class="pv" href="#'+t.id+'"><small>Back to</small>'+t.title+'</a>')+(n?'<a class="nx" href="#'+t.id+'/'+n.id+'"><small>Next chapter</small>'+n.title+'</a>':'<a class="nx" href="#"><small>All done, back to</small>Study notes</a>')+'</div></article></main></div>';
+ view.innerHTML=h;setTitle(c.title+' | '+t.title);
+ mark(t,c);
+ if(view.querySelector('details')){var tc=view.querySelector('.toc');tc.insertAdjacentHTML('afterend','<button type="button" class="qabtn" id="qaall">Open all answers</button>');
+  document.getElementById('qaall').addEventListener('click',function(){var d=view.querySelectorAll('details'),open=this.dataset.o!=='1';[].forEach.call(d,function(x){x.open=open});this.dataset.o=open?'1':'0';this.textContent=open?'Close all answers':'Open all answers'});
+  var ds=view.querySelectorAll('details'),stat=document.createElement('span');stat.id='qastat';document.getElementById('qaall').after(stat);
+  function upd(){var k=0;[].forEach.call(ds,function(d,qi){if(S.qa[t.id+'/'+c.id+'/'+qi]==='k')k++});stat.textContent='Known '+k+' of '+ds.length}
+  [].forEach.call(ds,function(d,qi){var key=t.id+'/'+c.id+'/'+qi,r=document.createElement('div');r.className='rate';r.innerHTML='<button type="button" data-r="k">I knew this</button><button type="button" data-r="r">Revise later</button>';d.appendChild(r);
+   function paint(){d.classList.toggle('known',S.qa[key]==='k');d.classList.toggle('rev',S.qa[key]==='r')}paint();
+   r.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;S.qa[key]=b.dataset.r;save();paint();upd()})});
+  upd()}
+ [].forEach.call(view.querySelectorAll('.cb'),function(b){var cp=document.createElement('button');cp.type='button';cp.textContent='Copy';cp.addEventListener('click',function(){var x=b.querySelector('code').textContent;if(navigator.clipboard){navigator.clipboard.writeText(x).then(function(){cp.textContent='Copied';setTimeout(function(){cp.textContent='Copy'},1500)})}});b.appendChild(cp)});
+ [].forEach.call(view.querySelectorAll('[data-go]'),function(a){a.addEventListener('click',function(e){e.preventDefault();go(a.dataset.go)})});
+ var key=t.id+'/'+c.id;
+ if('IntersectionObserver' in window){var o=new IntersectionObserver(function(es){if(es[0].isIntersecting){o.disconnect();if(!read[key]){read[key]=1;try{localStorage.setItem('sread',JSON.stringify(read))}catch(e){}var on=view.querySelector('#tlist a.on');if(on&&!on.querySelector('small'))on.insertAdjacentHTML('beforeend','<small>read</small>')}}},{threshold:.6});o.observe(document.getElementById('pn'))}
+}
+function go(id){var el=document.getElementById(id);if(el)el.scrollIntoView({behavior:rm?'auto':'smooth'})}
+function route(){
+ var h=location.hash.replace(/^#\/?/,'').split('/'),t=byId[h[0]];
+ if(!t){lib();window.scrollTo(0,0);return}
+ var c=h[1]&&t.chapters.filter(function(x){return x.id===h[1]})[0];
+ if(c&&!t.soon)chapter(t,c);else topic(t);
+ if(pend){var id=pend;pend=null;setTimeout(function(){go(id)},60)}else window.scrollTo(0,0);
+}
+window.addEventListener('hashchange',route);
+q.addEventListener('input',function(){
+ var s=q.value.trim().toLowerCase();if(s.length<2){sr.hidden=true;return}
+ var res=[];
+ T.forEach(function(t){t.chapters.forEach(function(c){c.sections.forEach(function(x){var i=x.raw.toLowerCase().indexOf(s),j=x.title.toLowerCase().indexOf(s);if(i>-1||j>-1)res.push({t:t,c:c,x:x,i:Math.max(i,0)})})})});
+ if(!res.length){sr.innerHTML='<a href="#" onclick="return false"><b>No match</b><small>Try a different word</small></a>';sr.hidden=false;return}
+ sr.innerHTML=res.slice(0,8).map(function(r){var sn=r.x.raw.slice(Math.max(0,r.i-30),r.i+70);return '<a href="#'+r.t.id+'/'+r.c.id+'" data-s="'+r.x.id+'"><b>'+r.x.title+'</b><small>'+r.t.title+' / '+r.c.title+'</small><small>...'+sn.replace(/</g,'&lt;')+'...</small></a>'}).join('');
+ sr.hidden=false;
+});
+sr.addEventListener('click',function(e){var a=e.target.closest('a');if(!a||!a.dataset.s)return;pend=a.dataset.s;sr.hidden=true;q.value='';if(location.hash==a.getAttribute('href')){route()}});
+document.addEventListener('click',function(e){if(!e.target.closest('.srch'))sr.hidden=true});
+q.addEventListener('keydown',function(e){if(e.key==='Escape'){q.value='';sr.hidden=true}});
+route();
+var bar=document.getElementById('bar');
+window.addEventListener('scroll',function(){var h=document.documentElement,m=h.scrollHeight-h.clientHeight;bar.style.width=(m>0?h.scrollTop/m*100:0)+'%'},{passive:true});
+var root=document.documentElement;
+function toggle(){var dark=root.getAttribute('data-theme')?root.getAttribute('data-theme')==='dark':!matchMedia('(prefers-color-scheme: light)').matches;var n=dark?'light':'dark';root.setAttribute('data-theme',n);try{localStorage.setItem('theme',n)}catch(e){}}
+try{var sv=localStorage.getItem('theme');if(sv)root.setAttribute('data-theme',sv)}catch(e){}
+document.getElementById('theme').addEventListener('click',toggle);
+var rd=document.getElementById('read'),sizes=[.9,1,1.1,1.2,1.35],fi=1;
+function setRead(on){if(on){root.setAttribute('data-read','paper')}else{root.removeAttribute('data-read')}rd.setAttribute('aria-pressed',on?'true':'false');rd.textContent=on?'Reading mode: on':'Reading mode';try{localStorage.setItem('sread-mode',on?'1':'0')}catch(e){}}
+function setFs(i){fi=Math.max(0,Math.min(sizes.length-1,i));root.style.setProperty('--rs',sizes[fi]+'rem');try{localStorage.setItem('sfs',fi)}catch(e){}}
+rd.addEventListener('click',function(){setRead(!root.hasAttribute('data-read'))});
+document.getElementById('fm').addEventListener('click',function(){setFs(fi-1)});
+document.getElementById('fp').addEventListener('click',function(){setFs(fi+1)});
+try{var sm=localStorage.getItem('sread-mode');if(sm==='1'||sm===null)setRead(true);var sf=parseInt(localStorage.getItem('sfs'),10);if(!isNaN(sf))setFs(sf)}catch(e){}
+})();
+</script>
+</body>
+</html>
